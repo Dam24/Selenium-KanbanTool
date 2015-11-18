@@ -27,7 +27,7 @@ public class LoginPage extends BasePageObject{
     @FindBy(id = "login_button")
     WebElement loginBtn;
 
-    @FindBy(className = "flash error")
+    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/p")
     WebElement loginErrorMessage;
 
     public LoginPage() {
@@ -78,8 +78,8 @@ public class LoginPage extends BasePageObject{
         return clickLoginBtnFailed();
     }
 
-    public String getErrorMessage() {
-        return loginErrorMessage.getText();
+    public Boolean getErrorMessage() {
+        return loginErrorMessage.isDisplayed();
     }
 
     /*public String getErrorMessage() {

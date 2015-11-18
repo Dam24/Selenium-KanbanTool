@@ -1,5 +1,7 @@
 package ui.pages;
 
+import ui.BasePageObject;
+
 /**
  * Created with IntelliJ IDEA.
  * User: DamianVillanueva
@@ -7,10 +9,7 @@ package ui.pages;
  * Time: 10:36 AM
  * To change this template use File | Settings | File Templates.
  */
-public class UsersSuspendedPage {
-
-
-
+public class UsersSuspendedPage extends BasePageObject{
 
     public boolean isAddedSuspendedUser(String userName){
         return true;
@@ -25,4 +24,8 @@ public class UsersSuspendedPage {
     }
 
 
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

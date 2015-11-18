@@ -10,13 +10,16 @@ import ui.pages.MainPage;
  * To change this template use File | Settings | File Templates.
  */
 public class CommonMethods {
+   // private MainPage mainPage;
 
     /**
      * Log outs from the web app
      */
     public static void logOut() {
-//        mainPage =new MainPage();
-//
-//        mainPage.logout();
+        //private mainPage = new MainPage();
+        MainPage mainPage=new MainPage();
+        mainPage.logOut();
     }
+
+
 }

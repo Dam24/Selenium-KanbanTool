@@ -1,5 +1,7 @@
 package steps;
 
+import common.CommonMethods;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -24,9 +26,10 @@ import static org.junit.Assert.assertEquals;
  * Time: 4:00 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Login {
+public class LoginSteps {
     private LoginPage loginPage;
     private MainPage mainPage;
+    private CommonMethods commonMethods;
 
     //private PageTransporter pageTransporter=PageTransporter.getInstance();
   private WebDriver webDriver;
@@ -54,17 +57,17 @@ public class Login {
 
     @Then ("^I not should login successfully$")
     public void verifyMainPageNotIsDisplayed(){
-        //assertTrue(loginPage.getErrorMessage(), "The username or password is invalid.");
-        assertEquals(loginPage.getErrorMessage(), "The username or password is invalid.");
+        assertTrue(loginPage.getErrorMessage());
+        //assertEquals(loginPage.getErrorMessage(), "The username or password is invalid..");
     }
 
     //****************************************************************
-    //Hooks for @Login scenarios
+    //Hooks for @LoginSteps scenarios
     //****************************************************************
-//    @After(value = "@Login", order = 999)
-//    public void afterLoginScenario() {
-//        CommonMethods.logOut();
-//    }
+    @After(value = "@LoginSteps", order = 999)
+    public void afterLoginScenario() {
+        commonMethods.logOut();
+    }
 }
 
 

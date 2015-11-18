@@ -6,6 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.BasePageObject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,9 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Time: 8:48 AM
  * To change this template use File | Settings | File Templates.
  */
-public class UsersNewPage {
+public class UsersNewPage extends BasePageObject{
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected UsersPage usersPage;
 
     @FindBy(id = "user_name")
     @CacheLookup
@@ -53,6 +55,11 @@ public class UsersNewPage {
     @FindBy(id = "new_user")
     @CacheLookup
     WebElement newUserCont;
+
+
+
+
+
 
 
     //@Override
@@ -108,19 +115,20 @@ public class UsersNewPage {
         setUserEmailInput(email);
     }
     private void selectCheckBox(String checkBox){
-        if (checkBox=="Project manager "){
+        if (checkBox.contentEquals("Project manager")){
             clickUserProjectManagerCheck();
         }
-        else if(checkBox=="Account administrator"){
+        else if(checkBox.contentEquals("Account administrator")){
             clickUserAccountAdminCheck();
         }
-        else if(checkBox=="Account owner"){
+        else if(checkBox.contentEquals("Account owner")){
             clickUserAccountOwnerCheck();
         }
     }
 
     public UsersPage addNewUserSuccessful(String userName, String email, String checkBox){
-        fillAddNewPerson(userName,email);
+
+        fillAddNewPerson(userName, email);
         selectCheckBox(checkBox);
         return clickBtnAdd();
     }

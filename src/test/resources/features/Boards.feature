@@ -7,9 +7,19 @@ Feature: Boards
 
   Scenario Outline:  User should be able create a new Board
     Given I navigate to Dashboard page
-    When I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", tempale: "<Board Template>"
+    When I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
     Then I should display the Board "<Board Name>" on the page
       And I should display the Board name in the boards list on the Dashboard page
+
+  Examples:
+    |Board Name            |Board Description   |Board Template   |
+    |BoardSimpleBasic      |This a test Board   |simple basic     |
+    |BoardTimeDriver       |This a test Board   |time driven      |
+    |BoardEventDriver      |This a test Board   |event driven     |
+    |BoardTeamBasic        |This a test Board   |team basic       |
+    |BoardProductDEV       |This a test Board   |product dev.     |
+    |BoardSalesPipeline    |This a test Board   |sales pipeline   |
+    |BoardOnlineMarketing  |This a test Board   |online marketing |
 
 #    And the
 #    When I want to create a new Kanban board

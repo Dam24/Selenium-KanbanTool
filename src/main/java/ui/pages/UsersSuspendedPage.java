@@ -1,5 +1,12 @@
 package ui.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.BasePageObject;
 
 /**
@@ -11,6 +18,37 @@ import ui.BasePageObject;
  */
 public class UsersSuspendedPage extends BasePageObject{
 
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected UsersPage usersPage;
+
+    @FindBy(linkText = "Go back to active users list")
+    @CacheLookup
+    WebElement goBackBtn;
+
+    @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
+    @CacheLookup
+    WebElement tableUsersSuspended;
+    @FindBy(xpath = "//div[1]/p")
+    @CacheLookup
+    WebElement successfullMessage;
+
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
+    }
+
+    public void clickReactivateUserBtn(String userName){
+        WebElement reactivateBtn=tableUsersSuspended.findElement(By.xpath("//tr[td[contains(text(),'" + userName + "')]]/td[3]/a[1]"));
+        System.out.println("suspend Button:   "+ reactivateBtn.getText());
+        reactivateBtn.click();
+    }
+    public void clickDeleteUserBtn(String userName){
+        WebElement deleteBtn=tableUsersSuspended.findElement(By.xpath("//tr[td[contains(text(),'" + userName + "')]]/td[3]/a[2]"));
+        System.out.println("suspend Button:   "+ deleteBtn.getText());
+        deleteBtn.click();
+    }
+
     public boolean isAddedSuspendedUser(String userName){
         return true;
     }
@@ -20,12 +58,9 @@ public class UsersSuspendedPage extends BasePageObject{
     }
 
     public boolean isMessageDisplayed(){
-        return true;
+        return successfullMessage.isDisplayed();
     }
 
 
-    @Override
-    public void waitUntilPageObjectIsLoaded() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+
 }

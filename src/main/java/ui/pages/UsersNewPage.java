@@ -56,13 +56,7 @@ public class UsersNewPage extends BasePageObject{
     @CacheLookup
     WebElement newUserCont;
 
-
-
-
-
-
-
-    //@Override
+    @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(newUserCont));
     }

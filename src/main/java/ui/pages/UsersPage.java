@@ -48,9 +48,9 @@ public class UsersPage extends BasePageObject {
     @CacheLookup
     WebElement brand;
     //@FindBy(linkText = "suspend")
-    @FindBy(xpath = "xpath=(//a[contains(text(),'suspend')])")
-    @CacheLookup
-    WebElement suspendButton;
+//    @FindBy(xpath = "xpath=(//a[contains(text(),'suspend')])")
+//    @CacheLookup
+//    WebElement suspendButton;
 
 
     @Override
@@ -63,11 +63,16 @@ public class UsersPage extends BasePageObject {
         addNewPerson.click();
         return new UsersNewPage();
     }
+    public UsersSuspendedPage clickSuspendUsers(){
+        suspendedUsers.click();
+        return new UsersSuspendedPage();
+    }
+    public UsersImportPage clickInviteWholeTeam(){
+        inviteWholeTeam.click();
+        return new UsersImportPage();
+    }
 
-//    public void clickAddBtn(){
-//        //addNewPerson.click();
-//        brand.click();
-//    }
+
 
 //    public boolean isAddedUser(String userName){
 //
@@ -131,18 +136,27 @@ public class UsersPage extends BasePageObject {
         //td[3]/a[contains(text(),'suspend')]
     }
 
+    public void clickSuspendUserBtn(String userName){
+        WebElement suspendBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
+        System.out.println("suspend Button:   "+ suspendBtn.getText());
+        suspendBtn.click();
+    }
+    public void clickEditUserBtn(String userName){
+        WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[1]"));
+        System.out.println("suspend Button:   "+ editBtn.getText());
+        editBtn.click();
+
+    }
+
     public boolean isUserDisplayedInList(String userName) {
-        //return true;
-        //return tableUsers.isElementPresent(By.xpath("//div[contains(text(),'" + userName + "')]"));
         WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
         System.out.println("user encontrado:   "+element.getText());
-        //td[contains(text(),'Damian4')]
         return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
     }
 
-    public boolean isSuspendedUser(String userName){
-        return suspendedUsers.findElement(By.linkText(userName)).isDisplayed();
-    }
+//    public boolean isSuspendedUser(String userName){
+//        return suspendedUsers.findElement(By.linkText(userName)).isDisplayed();
+//    }
 
 
 

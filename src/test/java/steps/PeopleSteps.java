@@ -13,6 +13,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
+
 /**
  * Created by peniel on 16/11/2015.
  */
@@ -53,12 +54,15 @@ public class PeopleSteps {
 //    }
     @When("^I suspend to user \"([^\"]*)\"$")
     public void I_suspend_to_user(String userName){
-        usersPage.setSuspendedUsers(userName);
+        //usersPage.setSuspendedUsers(userName);
+        usersPage.clickSuspendUserBtn(userName);
+        //assert
     }
 
     @Then("^I should not able to view to suspended user \"([^\"]*)\" on the Users list$")
     public void I_should_not_able_to_view_to_suspended_user_on_the_Users_list(String userName){
-        assertFalse(usersPage.findUserOnList(userName));
+        //assertFalse(usersPage.findUserOnList(userName));
+        assertFalse(usersPage.isUserDisplayedInList(userName));
     }
 
     @And("^I should be able view the user suspended \"([^\"]*)\" on the suspended user list$")
@@ -68,12 +72,14 @@ public class PeopleSteps {
 
     @And("^I navigate to Suspended User List$")
     public void I_navigate_to_Suspended_User_List(){
-        usersSuspendedPage=PageTransporter.getInstance().navigateToUserSuspendedPage();
+        usersPage.clickSuspendUsers();
+        //usersSuspendedPage=PageTransporter.getInstance().navigateToUserSuspendedPage();
     }
 
     @When("^I reactive to user \"([^\"]*)\"$")
     public void I_reactive_to_user(String userName){
-        usersSuspendedPage.reactivateUser(userName);
+        usersSuspendedPage.clickReactivateUserBtn(userName);
+        //usersSuspendedPage.reactivateUser(userName);
     }
     @Then("^I should be able to view the message: There are no suspended users$")
     public void successfulMessage(){
@@ -81,6 +87,7 @@ public class PeopleSteps {
     }
     @And("^I should be able to view to reactive user on Users lis$")
     public void I_should_be_able_to_view_to_reactive_user_on_Users_lis(String userName){
+        assertTrue(usersPage.isUserDisplayedInList(userName));
         //assertTrue(usersPage.isAddedUser(userName));
     }
 

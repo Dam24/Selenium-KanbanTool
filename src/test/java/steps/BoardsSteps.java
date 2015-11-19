@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import ui.PageTransporter;
 import ui.pages.MainPage;
 
@@ -17,6 +18,11 @@ public class BoardsSteps {
     @Given("^I navigate to Dashboard page$")
     public void navigateDashboardPage(){
         mainPage=PageTransporter.getInstance().navigateToMainPage();
+    }
+
+    @When("I create a new board with the following details: Board Name: \"(.*?)\", description: \"(.*?)\", template: \"(.*?)\"")
+    public void createNewBoard(String boardName, String boardDescription, String boardTemplate){
+
     }
 
 

@@ -46,32 +46,32 @@ Feature: people
 #
 #
 #
-  @SuspendedUsers
-
-  Scenario Outline: User should be able suspend users
-    Given I navigate to User page
-    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
-    When I suspend to user "<User Name>"
-    Then I should not able to view to suspended user "<User Name>" on the Users list
-#    And I should be able view the user suspended "<User Name>" on the suspended user list
-  Examples:
-
-    |User Name  |Email                    |Privilege         |
-    |Damian4    |pvp1624@hotmail.com      |None              |
-
+#  @SuspendedUsers
 #
-#  @reactivateUser
-#
-#  Scenario Outline: User should be able reactivate users
+#  Scenario Outline: User should be able suspend users
 #    Given I navigate to User page
-#      And I suspend to user "<User Name>"
-#      And I navigate to Suspended User List
-#    When I reactive to user "<User Name>"
-#    Then I should be able to view the message: There are no suspended users
-#      And I should be able to view to reactive user on Users lis
+#    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
+#    When I suspend to user "<User Name>"
+#    Then I should not able to view to suspended user "<User Name>" on the Users list
+##    And I should be able view the user suspended "<User Name>" on the suspended user list
 #  Examples:
-#    |User Name          |
-#    |Peniel Damian      |
+#
+#    |User Name  |Email                    |Privilege         |
+#    |Damian4    |pvp1624@hotmail.com      |None              |
+
+#
+  @reactivateUser
+
+  Scenario Outline: User should be able reactivate users
+    Given I navigate to User page
+      And I suspend to user "<User Name>"
+      And I navigate to Suspended User List
+    When I reactive to user "<User Name>"
+    Then I should be able to view the message: There are no suspended users
+      And I should be able to view to reactive user on Users lis
+  Examples:
+    |User Name          |
+    |Damian4            |
 #    |Damian Villanueva  |
 #    |Peniel Villanueva  |
 

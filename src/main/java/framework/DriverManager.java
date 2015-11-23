@@ -38,11 +38,14 @@ public class DriverManager {
         driver=new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        wait=new WebDriverWait(driver,30, 100);
+        wait= new WebDriverWait(driver, 30, 100);
     }
 
     public void Close(){
-        driver.close();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
     private DriverManager(){

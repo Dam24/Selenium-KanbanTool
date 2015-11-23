@@ -14,8 +14,8 @@ import java.util.List;
  * Created by peniel on 16/11/2015.
  */
 public class UsersPage extends BasePageObject {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+//    protected WebDriver driver;
+//    protected WebDriverWait wait;
 
     @FindBy(className = "actions_pane")
     @CacheLookup
@@ -50,6 +50,9 @@ public class UsersPage extends BasePageObject {
 //    @CacheLookup
 //    WebElement suspendButton;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[3]/a[2]")
+    @CacheLookup
+    WebElement wait123;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
@@ -121,36 +124,51 @@ public class UsersPage extends BasePageObject {
         //td[3]/a[contains(text(),'suspend')]
     }
 
-    public boolean isAlertPresent() {
+//    public boolean isAlertPresent() {
+//        boolean presentFlag = false;
+//        try {
+//            // Check the presence of alert
+//            Alert alert = driver.switchTo().alert();
+//            // Alert present; set the flag
+//            presentFlag = true;
+//            // if present consume the alert
+//            alert.accept();
+//        } catch (NoAlertPresentException ex) {
+//            // Alert not present
+//            ex.printStackTrace();
+//        }
+//        return presentFlag;
+//    }
 
-        boolean presentFlag = false;
-
-        try {
-
-            // Check the presence of alert
-            Alert alert = driver.switchTo().alert();
-            // Alert present; set the flag
-            presentFlag = true;
-            // if present consume the alert
-            alert.accept();
-
-        } catch (NoAlertPresentException ex) {
-            // Alert not present
-            ex.printStackTrace();
-        }
-
-        return presentFlag;
-
+    public boolean isAlertPresent(){
+        try{
+            driver.switchTo().alert();
+            return true;
+        }//try
+        catch(Exception e){
+            return false;
+        }//catch
     }
 
-    public void clickSuspendUserBtn(String userName){
+    public void clickSuspendUserBtn(String userName) throws InterruptedException {
         WebElement suspendBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
         System.out.println("suspend Button:   "+ suspendBtn.getText());
+
+        //suspendBtn.click();
+        //wait.until(ExpectedConditions.alertIsPresent());
+//        Thread.sleep(2000);
         suspendBtn.click();
-        wait.withTimeout(1000);
-        Alert alert = driver.switchTo().alert();
-        System.out.println("alert message: "+alert.getText());
-        alert.accept();
+        wait.until(ExpectedConditions.alertIsPresent());
+        System.out.println("is alert present "+isAlertPresent());
+
+        //if(isAlertPresent()){
+            Alert alert = driver.switchTo().alert();
+            System.out.println("alert message: "+alert.getText());
+
+            alert.accept();
+        //}
+
+
     }
     public void clickEditUserBtn(String userName){
         WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[1]"));

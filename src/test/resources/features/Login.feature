@@ -21,5 +21,5 @@ Feature: Login
   Examples:
     | User Name                                | Password     |
     | Admin                                    | Password123! |
-#    | DamianVillanueva                         | Control123   |
-#    | Concurrent                               | Password123! |
+    | DamianVillanueva                         | Control123   |
+    | Concurrent                               | Password123! |

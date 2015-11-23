@@ -53,7 +53,7 @@ public class PeopleSteps {
 //
 //    }
     @When("^I suspend to user \"([^\"]*)\"$")
-    public void I_suspend_to_user(String userName){
+    public void I_suspend_to_user(String userName) throws InterruptedException {
         //usersPage.setSuspendedUsers(userName);
         usersPage.clickSuspendUserBtn(userName);
 //        usersPage.isAlertPresent();

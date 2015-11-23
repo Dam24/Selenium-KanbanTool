@@ -58,7 +58,7 @@ public class UsersNewPage extends BasePageObject{
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(newUserCont));
+//        wait.until(ExpectedConditions.visibilityOf(newUserCont));
     }
 
     private UsersNewPage setUserNameInput(String userName) {

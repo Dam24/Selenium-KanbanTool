@@ -3,17 +3,13 @@ Feature: Board
   Background:
     Given I have a valid account on Kanban Tool
     And I login with user ”PenielDamian” with password “Control123”
-  https://penieldamian.kanbantool.com/login
 
-  Scenario:  Create a new Board
-    Given I am in the Dashboard section
-    When I want to create a new Kanban board
-    Then I have to select Create new board
-    And I have to assigned a name
-    And I choose a template
-    When I create a new board
-    Then the board columns is displayed on the window
-    And the board name is displayed on Dashboard section
+  Scenario:  User Should be moved a Task
+    Given I navigate to Dashboard page
+    And I have to a Board created with the following details:.......
+    And I have to a task created on <"Column Name"> Column
+    When I moved the task the <"Column Name"> to <"Column Destine">
+    Then  The Task should be possicioned on the <"Column Destine"> Column
 
 
   @DeleteBoard
@@ -25,11 +21,9 @@ Feature: Board
 
 
   Scenario: Delete a Board
-    Given I am in the Dashboard section
-    When I want to delete a board
-    Then I have to select delete on more options
-    And I have to confirm to delete
-    When I delete a Board
+    Given I navigate to Dashboard page
+      And  I have to a board created
+    When I deleted a Board
     Then the board name should be remove to Dashboard
 
   @CloneBoard
@@ -38,14 +32,11 @@ Feature: Board
     Given I have a valid account on Kanban tool
     And I login with user ”PenielDamian” with password “Control123”
   Scenario: Clone a Board
-    Given: I am in the Dashboard section
-    When I want to clone a board
-    Then I have to select clone on more options
-    And I have to assig a new name for the new board
-    And I have to confirm the cloning
-    When I cloned a board
+    Given I navigate to Dashboard page
+      And I have to a board created
+    When I cloned the board
     Then the name board cloned should be display in the Dashboard section
-    And the board cloned structure should be same to original board
+      And the board cloned structure should be same to original board
 
   @renameBoard
   Feature: Board

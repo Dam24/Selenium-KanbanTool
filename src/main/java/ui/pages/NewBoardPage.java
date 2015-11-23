@@ -72,4 +72,11 @@ public class NewBoardPage extends BasePageObject {
         goBackLink.click();
         return new DashBoardPage();
     }
+
+    public NewBoardPage setCreateNewBoard(String boardName, String boardDescription, String boardTemplate){
+        setBoardNameInput(boardName);
+        setBoardDescriptionInput(boardDescription);
+
+        return clickCreateNewBoardBtn();
+    }
 }

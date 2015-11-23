@@ -64,11 +64,11 @@ Feature: people
 
   Scenario Outline: User should be able reactivate users
     Given I navigate to User page
-      And I suspend to user "<User Name>"
-      And I navigate to Suspended User List
+    And I suspend to user "<User Name>"
+    And I navigate to Suspended User List
     When I reactive to user "<User Name>"
     Then I should be able to view the message: There are no suspended users
-      And I should be able to view to reactive user on Users lis
+    And I should be able to view to reactive user on Users lis
   Examples:
     |User Name          |
     |Damian4            |
@@ -113,4 +113,3 @@ Feature: people
 #    |Peniel Damian      |
 #    |Damian Villanueva  |
 #    |Peniel Villanueva  |
-

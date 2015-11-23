@@ -24,7 +24,7 @@ public class DashBoardPage extends BasePageObject{
     @CacheLookup
     WebElement actionsPane;
 
-    @FindBy(className = "Create new board")
+    @FindBy(linkText = "Create new board")
     @CacheLookup
     WebElement createNewBoardLink;
 

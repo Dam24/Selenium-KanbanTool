@@ -56,7 +56,7 @@ public class PeopleSteps {
     public void I_suspend_to_user(String userName){
         //usersPage.setSuspendedUsers(userName);
         usersPage.clickSuspendUserBtn(userName);
-        //assert
+//        usersPage.isAlertPresent();
     }
 
     @Then("^I should not able to view to suspended user \"([^\"]*)\" on the Users list$")

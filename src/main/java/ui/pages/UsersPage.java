@@ -1,8 +1,6 @@
 package ui.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -74,20 +72,7 @@ public class UsersPage extends BasePageObject {
 
 
 
-//    public boolean isAddedUser(String userName){
-//
-//        //return tableUsers.getText().contains(userName);
-//        return tableUsers.findElement(By.linkText(userName)).isDisplayed();
-//        //return tableUsers.findElement(By.name(userName)).isDisplayed();
-//        //return tableUsers.isDisplayed();
-//        //return true;
-//    }
 
-    /*
-    tableUsers:WebElement de la tabla de Usuarios
-
-
-     */
     public boolean findUserOnList(String userName){
         boolean res = false;
 
@@ -136,10 +121,36 @@ public class UsersPage extends BasePageObject {
         //td[3]/a[contains(text(),'suspend')]
     }
 
+    public boolean isAlertPresent() {
+
+        boolean presentFlag = false;
+
+        try {
+
+            // Check the presence of alert
+            Alert alert = driver.switchTo().alert();
+            // Alert present; set the flag
+            presentFlag = true;
+            // if present consume the alert
+            alert.accept();
+
+        } catch (NoAlertPresentException ex) {
+            // Alert not present
+            ex.printStackTrace();
+        }
+
+        return presentFlag;
+
+    }
+
     public void clickSuspendUserBtn(String userName){
         WebElement suspendBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
         System.out.println("suspend Button:   "+ suspendBtn.getText());
         suspendBtn.click();
+        wait.withTimeout(1000);
+        Alert alert = driver.switchTo().alert();
+        System.out.println("alert message: "+alert.getText());
+        alert.accept();
     }
     public void clickEditUserBtn(String userName){
         WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[1]"));

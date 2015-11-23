@@ -21,66 +21,36 @@ Feature: Boards
     |BoardSalesPipeline    |This a test Board   |sales pipeline   |
     |BoardOnlineMarketing  |This a test Board   |online marketing |
 
-#    And the
-#    When I want to create a new Kanban board
-#    Then I have to select Create new board
-#    And I have to assigned the name "<Board Name>" with description "<Board Description>"
-#    And I choose the Board template "<Board Template>"
-#    When I create a new board
-#    Then the board columns should be displayed on the window
-#    And the board name should be displayed on Dashboard section
-#  Examples:
-#    |Board Name            |Board Description   |Board Template   |
-#    |BoardSimpleBasic      |This a test Board   |simple basic     |
-#    |BoardTimeDriver       |This a test Board   |time driven      |
-#    |BoardEventDriver      |This a test Board   |event driven     |
-#    |BoardTeamBasic        |This a test Board   |team basic       |
-#    |BoardProductDEV       |This a test Board   |product dev.     |
-#    |BoardSalesPipeline    |This a test Board   |sales pipeline   |
-#    |BoardOnlineMarketing  |This a test Board   |online marketing |
-#
-#  @DeleteBoard
-#  Feature: Board
-#  Background:
-#    Given I have a valid account on Kanban tool
-#    And I login with user ”PenielDamian” with password “Control123”
-#  https://penieldamian.kanbantool.com/login
-#
-#
-#  Scenario: User Should be able Delete a Board
-#    Given I navigate to Dashboard page
-#    And I have a Board Created
-#    When I want to delete a board
-#    Then I have to select delete on more options
-#    And I have to confirm to delete
-#    When I delete a Board
-#    Then the board name should be remove to Dashboard
-#
-#  @CloneBoard
-#  Feature: Board
-#  Background:
-#    Given I have a valid account on Kanban tool
-#    And I login with user ”PenielDamian” with password “Control123”
-#  Scenario: Clone a Board
-#    Given: I am in the Dashboard section
-#    When I want to clone a board
-#    Then I have to select clone on more options
-#    And I have to assig a new name for the new board
-#    And I have to confirm the cloning
-#    When I cloned a board
-#    Then the name board cloned should be display in the Dashboard section
-#    And the board cloned structure should be same to original board
-#
-#  @renameBoard
-#  Feature: Board
-#  Scenario: User should be able rename a Board
-#    Given: I am in the Dashboard section
-#    When I want to rename a board
-#    Then I have to select Rename on more options
-#    And I have to assig a different name
-#    And I have to save too changes
-#    When I rename a Board
-#    Then the new name board should be display on the Dashboard section
+
+  @DeleteBoard
+  Feature: Board
+  Background:
+    Given I have a valid account on Kanban tool
+    And I login with user ”PenielDamian” with password “Control123”
+  https://penieldamian.kanbantool.com/login
+
+
+  Scenario: User Should be able Delete a Board
+    Given I navigate to Dashboard page
+      And I have to a board created
+    When I delete the board
+    Then the board name should be remove to Dashboard List
+
+  @CloneBoard
+    Scenario: Clone a board
+    Given I navigate to Dashboard page
+      And I have to a board created
+    When I cloned the board
+    Then the name board cloned should be display in the Dashboard section
+    And the board cloned structure should be same to original board
+
+  @renameBoard
+  Feature: Board
+  Scenario: User should be able rename a Board
+    Given I navigate to Dashboard page
+    And I have to a board created
+    When I rename the Board
+    Then the new name board should be display on the Dashboard section
 #
 #  @reorderItems
 #  Feature: Board

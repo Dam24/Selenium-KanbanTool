@@ -39,7 +39,7 @@ public class PeopleSteps {
     }
 
     @Then("^the person \"([^\"]*)\" added should de displayed on the page$")
-    public void the_person_added_should_de_displayed_on_the_page(String userName) {
+    public void the_person_added_should_de_displayed_on_the_page(String userName) throws InterruptedException {
         //////assertTrue(usersPage.findUserOnList(userName));
         //assertTrue(usersPage.isUserDisplayedInList(userName), "User" + userName + " displayed in List");
         assertTrue(usersPage.isUserDisplayedInList(userName));
@@ -58,10 +58,18 @@ public class PeopleSteps {
         usersPage.clickSuspendUserBtn(userName);
 //        usersPage.isAlertPresent();
     }
+    @Then("The message \"([^\"]*)\" should be displayed on the window")
+    public void suspendedUserMessage(String message){
 
-    @Then("^I should not able to view to suspended user \"([^\"]*)\" on the Users list$")
-    public void I_should_not_able_to_view_to_suspended_user_on_the_Users_list(String userName){
+
+        //usersPage.isSuspendedMessageDisplayed();
+        assertEquals(message, usersPage.getSuspendedMessage());
+    }
+
+    @And("^I should not able to view to suspended user \"([^\"]*)\" on the Users list$")
+    public void I_should_not_able_to_view_to_suspended_user_on_the_Users_list(String userName) throws InterruptedException {
         //assertFalse(usersPage.findUserOnList(userName));
+        //System.out.println("state: " +usersPage.isUserDisplayedInList(userName));
         assertFalse(usersPage.isUserDisplayedInList(userName));
     }
 
@@ -86,7 +94,7 @@ public class PeopleSteps {
         assertTrue(usersSuspendedPage.isMessageDisplayed());
     }
     @And("^I should be able to view to reactive user on Users lis$")
-    public void I_should_be_able_to_view_to_reactive_user_on_Users_lis(String userName){
+    public void I_should_be_able_to_view_to_reactive_user_on_Users_lis(String userName) throws InterruptedException {
         assertTrue(usersPage.isUserDisplayedInList(userName));
         //assertTrue(usersPage.isAddedUser(userName));
     }

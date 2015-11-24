@@ -54,6 +54,10 @@ public class UsersPage extends BasePageObject {
     @CacheLookup
     WebElement wait123;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/p")
+    @CacheLookup
+    WebElement suspendMessage;
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(actionsPane));
@@ -159,7 +163,7 @@ public class UsersPage extends BasePageObject {
 //        Thread.sleep(2000);
         suspendBtn.click();
         wait.until(ExpectedConditions.alertIsPresent());
-        System.out.println("is alert present "+isAlertPresent());
+        //System.out.println("is alert present " + isAlertPresent());
 
         //if(isAlertPresent()){
             Alert alert = driver.switchTo().alert();
@@ -170,6 +174,19 @@ public class UsersPage extends BasePageObject {
 
 
     }
+
+    private boolean isSuspendedMessagePresent(){
+        return suspendMessage.isDisplayed();
+    }
+
+    public String getSuspendedMessage(){
+        System.out.println("message exist: "+isSuspendedMessagePresent());
+        return suspendMessage.getText();
+
+
+
+    }
+
     public void clickEditUserBtn(String userName){
         WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[1]"));
         System.out.println("suspend Button:   "+ editBtn.getText());
@@ -177,10 +194,15 @@ public class UsersPage extends BasePageObject {
 
     }
 
-    public boolean isUserDisplayedInList(String userName) {
-        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
-        System.out.println("user encontrado:   "+element.getText());
+    public boolean isUserDisplayedInList(String userName) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(tableUsers));
+       // wait.until(al);
+ //       Thread.sleep(5000);
+////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+////        System.out.println("user encontrado:   "+element.getText());
         return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+
+       // return false;
     }
 
 //    public boolean isSuspendedUser(String userName){

@@ -58,6 +58,10 @@ public class UsersPage extends BasePageObject {
     @CacheLookup
     WebElement suspendMessage;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/p")
+    @CacheLookup
+    WebElement createdMessage;
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(actionsPane));
@@ -69,7 +73,7 @@ public class UsersPage extends BasePageObject {
         return new UsersNewPage();
     }
     public UsersSuspendedPage clickSuspendUsers(){
-        suspendedUsers.click();
+//        suspendedUsers.click();
         return new UsersSuspendedPage();
     }
     public UsersImportPage clickInviteWholeTeam(){
@@ -158,19 +162,35 @@ public class UsersPage extends BasePageObject {
         WebElement suspendBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
         System.out.println("suspend Button:   "+ suspendBtn.getText());
 
-        //suspendBtn.click();
-        //wait.until(ExpectedConditions.alertIsPresent());
-//        Thread.sleep(2000);
-        suspendBtn.click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        //System.out.println("is alert present " + isAlertPresent());
+//        //suspendBtn.click();
+//        //wait.until(ExpectedConditions.alertIsPresent());
+////        Thread.sleep(2000);
+//        suspendBtn.click();
+//        wait.until(ExpectedConditions.alertIsPresent());
+//        //System.out.println("is alert present " + isAlertPresent());
+//
+//        //if(isAlertPresent()){
+//            Alert alert = driver.switchTo().alert();
+//            System.out.println("alert message: "+alert.getText());
+//
+//            alert.accept();
+//        //}
 
-        //if(isAlertPresent()){
+        String parentWindow = driver.getWindowHandle();
+        try{
+            suspendBtn.click();
+            wait.until(ExpectedConditions.alertIsPresent());
+            //System.out.println("is alert present " + isAlertPresent());
+
+            //if(isAlertPresent()){
             Alert alert = driver.switchTo().alert();
             System.out.println("alert message: "+alert.getText());
 
             alert.accept();
-        //}
+
+        }finally {
+            driver.switchTo().window(parentWindow);
+        }
 
 
     }
@@ -182,9 +202,10 @@ public class UsersPage extends BasePageObject {
     public String getSuspendedMessage(){
         System.out.println("message exist: "+isSuspendedMessagePresent());
         return suspendMessage.getText();
-
-
-
+    }
+    public String getCreatedUserMessage(){
+        System.out.println("message: "+createdMessage.getText());
+        return createdMessage.getText();
     }
 
     public void clickEditUserBtn(String userName){

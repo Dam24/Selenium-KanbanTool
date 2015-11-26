@@ -5,16 +5,16 @@ Feature: people
     Given I navigate to Login page
     When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
 
-  Scenario Outline: :User should be able add new person in the account
-    Given I navigate to User page
-    When I added a person with the following details "<Name>", "<Email>", "<Privilege>"
-    Then the person "<Name>" added should de displayed on the page
-#    And A successfull message should be displayed on the window
-
-  Examples:
-
-    |Name       |Email                                |Privilege              |
-    |DamianVP   |Damian.Villanueva@fundacion-jal.org  |Project manager        |
+#  Scenario Outline: :User should be able add new person in the account
+#    Given I navigate to User page
+#    When I added a person with the following details "<Name>", "<Email>", "<Privilege>"
+#    Then the person "<Name>" added should de displayed on the page
+#    And A successful message: "<Message>" should be displayed on the window
+#
+#  Examples:
+#
+#    |Name       |Email                                |Privilege              |Message      |
+#    |DamianVP   |Damian.Villanueva@fundacion-jal.org  |Project manager        |New user account has been created and activated\n+ Add another one|
 #    |Damian2    |penieldvp18@gmail.com                |Account administrator  |
 #    |Damian3    |pvp1624@hotmail.com                  |Account owner          |
 #    |Damian4    |pvp1624@hotmail.com                  |None                   |
@@ -47,19 +47,19 @@ Feature: people
 #
 #
 #
-#  @SuspendedUsers
+  @SuspendedUsers
 
-#  Scenario Outline: User should be able suspend users
-#    Given I navigate to User page
-#    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
-#    When I suspend to user "<User Name>"
-#    Then The message "<Message>" should be displayed on the window
-#    And I should not able to view to suspended user "<User Name>" on the Users list
-##    And I should be able view the user suspended "<User Name>" on the suspended user list
-#  Examples:
-#
-#    |User Name  |Email                    |Privilege         |Message                  |
-#    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
+  Scenario Outline: User should be able suspend users
+    Given I navigate to User page
+    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
+    When I suspend to user "<User Name>"
+    Then The message "<Message>" should be displayed on the window
+#      And I should not able to view to suspended user "<User Name>" on the Users list
+    And I should be able view the user suspended "<User Name>" on the suspended user list
+  Examples:
+
+    |User Name  |Email                    |Privilege         |Message                  |
+    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
 
 #
 #  @reactivateUser

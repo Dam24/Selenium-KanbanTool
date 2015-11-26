@@ -47,6 +47,10 @@ public class PeopleSteps {
 
         //assertTrue(usersPage);
     }
+    @And("A successful message: \"([^\"]*)\" should be displayed on the window")
+    public void successful_Message_is_displayed_on_the_window(String message){
+        assertEquals(message, usersPage.getCreatedUserMessage());
+    }
 //    @And("^I have 3 Users added$")
 //    public void I_have_3_Users_added(){
 //        usersPage=usersNewPage.addNewUserSuccessful(userName,userEmail,checkBox);
@@ -75,6 +79,7 @@ public class PeopleSteps {
 
     @And("^I should be able view the user suspended \"([^\"]*)\" on the suspended user list$")
     public void I_should_be_able_view_the_user_suspended_on_the_suspended_user_list(String userName){
+        usersPage.clickSuspendUsers();
         assertTrue(usersSuspendedPage.isAddedSuspendedUser(userName));
     }
 

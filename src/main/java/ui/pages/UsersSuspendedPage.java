@@ -29,6 +29,7 @@ public class UsersSuspendedPage extends BasePageObject{
     @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
     @CacheLookup
     WebElement tableUsersSuspended;
+
     @FindBy(xpath = "//div[1]/p")
     @CacheLookup
     WebElement successfullMessage;
@@ -50,7 +51,16 @@ public class UsersSuspendedPage extends BasePageObject{
     }
 
     public boolean isAddedSuspendedUser(String userName){
-        return true;
+        usersPage.clickSuspendUsers();
+
+        wait.until(ExpectedConditions.visibilityOf(tableUsersSuspended));
+        // wait.until(al);
+        //       Thread.sleep(5000);
+////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+////        System.out.println("user encontrado:   "+element.getText());
+        return tableUsersSuspended.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+
+        //return true;
     }
 
     public void reactivateUser(String userName){

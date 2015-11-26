@@ -47,19 +47,31 @@ Feature: people
 #
 #
 #
-  @SuspendedUsers
+#  @SuspendedUsers
+#
+#  Scenario Outline: User should be able suspend users
+#    Given I navigate to User page
+#    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
+#    When I suspend to user "<User Name>"
+#    Then The message "<Message>" should be displayed on the window
+##      And I should not able to view to suspended user "<User Name>" on the Users list
+#      And I should be able view the user suspended "<User Name>" on the suspended user list
+#  Examples:
+#
+#    |User Name  |Email                    |Privilege         |Message                  |
+#    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
 
-  Scenario Outline: User should be able suspend users
-    Given I navigate to User page
-    And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
-    When I suspend to user "<User Name>"
-    Then The message "<Message>" should be displayed on the window
-#      And I should not able to view to suspended user "<User Name>" on the Users list
-    And I should be able view the user suspended "<User Name>" on the suspended user list
-  Examples:
 
-    |User Name  |Email                    |Privilege         |Message                  |
-    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
+
+#@VerifySuspendedUser
+#Scenario Outline: User should be able suspend users
+#  Given I navigate to User page
+#    And I should be able view the user suspended "<User Name>" on the suspended user list
+#  Examples:
+#
+#    |User Name  |Email                    |Privilege         |Message                  |
+#    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
+#
 
 #
 #  @reactivateUser
@@ -79,18 +91,23 @@ Feature: people
 
 
 #
-#  @deleteUser
-#
-#  Scenario Outline: User should be able to delete a User
-#    Given I navigate to Users page
-#      And I have 3 suspended users
-#      And I enter to suspended user list
-#    When I delete to user "<User Name>"
-#    Then I should not be able to view to delete user on the Suspender User List
-#      And I should not be able to view to delete user on the User List
-#  Examples:
-#    |User Name          |
-#    |Peniel Damian      |
+  @deleteUser
+
+  Scenario Outline: User should be able to delete a User
+    Given I navigate to User page
+      And I added a person with the following details "<User Name>", "<Email>", "<Privilege>"
+      And I suspend to user "<User Name>"
+      And I have 3 suspended users
+      And I enter to suspended user list
+    When I delete to user "<User Name>"
+    Then I should not be able to view to delete user on the Suspender User List
+      And I should not be able to view to delete user on the User List
+  Examples:
+
+    |User Name  |Email                    |Privilege         |Message                  |
+    |Damian4    |pvp1624@hotmail.com      |None              |Selected user has been suspended and will not be able to login.|
+
+
 #    |Damian Villanueva  |
 #    |Peniel Villanueva  |
 #

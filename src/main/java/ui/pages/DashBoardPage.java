@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui.BasePageObject;
 
@@ -24,7 +25,8 @@ public class DashBoardPage extends BasePageObject{
     @CacheLookup
     WebElement actionsPane;
 
-    @FindBy(linkText = "Create new board")
+    //@FindBy(linkText = "Create new board")
+    @FindBy(xpath = "//*[@id=\"content\"]/div[5]/div[1]/ul/li[1]/a")
     @CacheLookup
     WebElement createNewBoardLink;
 
@@ -36,12 +38,19 @@ public class DashBoardPage extends BasePageObject{
     @CacheLookup
     WebElement reorderItemsLink;
 
+    public DashBoardPage() {
+        PageFactory.initElements(driver, this);
+        waitUntilPageObjectIsLoaded();
+    }
+
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(boardsList));
+//        wait.until(ExpectedConditions.visibilityOf(actionsPane));
     }
 
     public NewBoardPage clickCreateNewBoardLink(){
+        //wait.until(ExpectedConditions.visibilityOf(createNewBoardLink));
         createNewBoardLink.click();
         return new NewBoardPage();
     }
@@ -69,6 +78,24 @@ public class DashBoardPage extends BasePageObject{
 
     }
 
+    public boolean isBoardDisplayedOnList(String boardName){
+        wait.until(ExpectedConditions.visibilityOf(boardsList));
+        return boardsList.findElement(By.xpath("")).isDisplayed();
+    }      public boolean isBoardDisplayedOnList(String boardName){
+        wait
+    }
+
+
+    public boolean isUserDisplayedInList(String userName) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(tableUsers));
+        // wait.until(al);
+        //       Thread.sleep(5000);
+////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+////        System.out.println("user encontrado:   "+element.getText());
+        return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+
+        // return false;
+    }
 
 
 

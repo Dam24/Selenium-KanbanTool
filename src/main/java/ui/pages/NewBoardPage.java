@@ -3,6 +3,7 @@ package ui.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import ui.BasePageObject;
 
 /**
@@ -41,6 +42,11 @@ public class NewBoardPage extends BasePageObject {
     @CacheLookup
     WebElement goBackLink;
 
+    public NewBoardPage() {
+        PageFactory.initElements(driver, this);
+        waitUntilPageObjectIsLoaded();
+    }
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -58,9 +64,9 @@ public class NewBoardPage extends BasePageObject {
         return this;
     }
 
-    private NewBoardPage clickCreateNewBoardBtn(){
+    private DashBoardPage clickCreateNewBoardBtn(){
         submitBtn.click();
-        return this;
+        return new DashBoardPage();
     }
 
     private NewBoardPage clickCancelBtn(){
@@ -73,7 +79,7 @@ public class NewBoardPage extends BasePageObject {
         return new DashBoardPage();
     }
 
-    public NewBoardPage setCreateNewBoard(String boardName, String boardDescription, String boardTemplate){
+    public DashBoardPage setCreateNewBoard(String boardName, String boardDescription, String boardTemplate){
         setBoardNameInput(boardName);
         setBoardDescriptionInput(boardDescription);
 

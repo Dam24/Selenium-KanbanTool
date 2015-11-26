@@ -1,56 +1,58 @@
 @createBoard
 Feature: Boards
+#  Background:
+#    Given I navigate to Login page
+#    And I login as "<User Name>" with password "<Password>"
   Background:
     Given I navigate to Login page
-    And I login as "<User Name>" with password "<Password>"
-  https://penieldamian.kanbantool.com/login
+    When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
 
   Scenario Outline:  User should be able create a new Board
     Given I navigate to Dashboard page
     When I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-    Then I should display the Board "<Board Name>" on the page
-    And I should display the Board name in the boards list on the Dashboard page
+    Then the Board "<Board Name>" it should be displayed on the window
+    And I should view the Board name "<Board Name>" in the boards list
 
   Examples:
     |Board Name            |Board Description   |Board Template   |
     |BoardSimpleBasic      |This a test Board   |simple basic     |
-    |BoardTimeDriver       |This a test Board   |time driven      |
-    |BoardEventDriver      |This a test Board   |event driven     |
-    |BoardTeamBasic        |This a test Board   |team basic       |
-    |BoardProductDEV       |This a test Board   |product dev.     |
-    |BoardSalesPipeline    |This a test Board   |sales pipeline   |
-    |BoardOnlineMarketing  |This a test Board   |online marketing |
+#    |BoardTimeDriver       |This a test Board   |time driven      |
+#    |BoardEventDriver      |This a test Board   |event driven     |
+#    |BoardTeamBasic        |This a test Board   |team basic       |
+#    |BoardProductDEV       |This a test Board   |product dev.     |
+#    |BoardSalesPipeline    |This a test Board   |sales pipeline   |
+#    |BoardOnlineMarketing  |This a test Board   |online marketing |
 
 
-  @DeleteBoard
-  Feature: Board
-  Background:
-    Given I have a valid account on Kanban tool
-    And I login with user ”PenielDamian” with password “Control123”
-  https://penieldamian.kanbantool.com/login
-
-
-  Scenario: User Should be able Delete a Board
-    Given I navigate to Dashboard page
-    And I have to a board created
-    When I delete the board
-    Then the board name should be remove to Dashboard List
-
-  @CloneBoard
-  Scenario: Clone a board
-    Given I navigate to Dashboard page
-    And I have to a board created
-    When I cloned the board
-    Then the name board cloned should be display in the Dashboard section
-    And the board cloned structure should be same to original board
-
-  @renameBoard
-  Feature: Board
-  Scenario: User should be able rename a Board
-    Given I navigate to Dashboard page
-    And I have to a board created
-    When I rename the Board
-    Then the new name board should be display on the Dashboard section
+#  @DeleteBoard
+#  Feature: Board
+#  Background:
+#    Given I have a valid account on Kanban tool
+#    And I login with user ”PenielDamian” with password “Control123”
+#  https://penieldamian.kanbantool.com/login
+#
+#
+#  Scenario: User Should be able Delete a Board
+#    Given I navigate to Dashboard page
+#    And I have to a board created
+#    When I delete the board
+#    Then the board name should be remove to Dashboard List
+#
+#  @CloneBoard
+#  Scenario: Clone a board
+#    Given I navigate to Dashboard page
+#    And I have to a board created
+#    When I cloned the board
+#    Then the name board cloned should be display in the Dashboard section
+#    And the board cloned structure should be same to original board
+#
+#  @renameBoard
+#  Feature: Board
+#  Scenario: User should be able rename a Board
+#    Given I navigate to Dashboard page
+#    And I have to a board created
+#    When I rename the Board
+#    Then the new name board should be display on the Dashboard section
 #
 #  @reorderItems
 #  Feature: Board

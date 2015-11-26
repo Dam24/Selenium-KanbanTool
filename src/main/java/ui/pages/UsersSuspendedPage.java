@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.BasePageObject;
@@ -18,15 +19,17 @@ import ui.BasePageObject;
  */
 public class UsersSuspendedPage extends BasePageObject{
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    protected UsersPage usersPage;
+//    protected WebDriver driver;
+//    protected WebDriverWait wait;
+//    protected UsersPage usersPage;
 
     @FindBy(linkText = "Go back to active users list")
     @CacheLookup
     WebElement goBackBtn;
 
     @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
+    //@FindBy(xpath = "//*[@id=\"content\"]/div[1]/table")
+    //@FindBy(className = "table table-condensed")
     @CacheLookup
     WebElement tableUsersSuspended;
 
@@ -34,9 +37,14 @@ public class UsersSuspendedPage extends BasePageObject{
     @CacheLookup
     WebElement successfullMessage;
 
+//    public UsersSuspendedPage(){
+//        PageFactory.initElements(driver, this);
+//        waitUntilPageObjectIsLoaded();
+//    }
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
+//        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
     }
 
     public void clickReactivateUserBtn(String userName){
@@ -50,16 +58,10 @@ public class UsersSuspendedPage extends BasePageObject{
         deleteBtn.click();
     }
 
-    public boolean isAddedSuspendedUser(String userName){
-        usersPage.clickSuspendUsers();
-
-        wait.until(ExpectedConditions.visibilityOf(tableUsersSuspended));
-        // wait.until(al);
-        //       Thread.sleep(5000);
-////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
-////        System.out.println("user encontrado:   "+element.getText());
+    public boolean isAddedSuspendedUser(String userName)throws InterruptedException{
+        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
         return tableUsersSuspended.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
-
+//        return driver.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
         //return true;
     }
 

@@ -78,9 +78,11 @@ public class PeopleSteps {
     }
 
     @And("^I should be able view the user suspended \"([^\"]*)\" on the suspended user list$")
-    public void I_should_be_able_view_the_user_suspended_on_the_suspended_user_list(String userName){
-        usersPage.clickSuspendUsers();
+    public void I_should_be_able_view_the_user_suspended_on_the_suspended_user_list(String userName) throws InterruptedException {
+        usersSuspendedPage= usersPage.clickSuspendUsers();
+//        System.out.println("userSUspendedList: "+usersSuspendedPage.isAddedSuspendedUser(userName) );
         assertTrue(usersSuspendedPage.isAddedSuspendedUser(userName));
+
     }
 
     @And("^I navigate to Suspended User List$")

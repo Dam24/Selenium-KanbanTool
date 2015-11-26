@@ -7,10 +7,7 @@ import org.openqa.selenium.WebDriver;
 /*import ui.admin.pages.LoginTSAdminPage;
 import ui.monitor.ApplicationsPage;
 import ui.web.pages.LoginTSWebPage;*/
-import ui.pages.LoginPage;
-import ui.pages.MainPage;
-import ui.pages.UsersPage;
-import ui.pages.UsersSuspendedPage;
+import ui.pages.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,9 +52,9 @@ public class PageTransporter {
         return new LoginPage();
     }
 
-    public MainPage navigateToMainPage(){
+    public DashBoardPage navigateToMainPage(){
         goToURL(baseMainPage);
-        return new MainPage();
+        return new DashBoardPage();
     }
 
     public UsersPage navigateToUsersPage(){

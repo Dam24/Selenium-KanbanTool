@@ -14,6 +14,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+
 import static framework.DriverManager.getInstance;
 
 //import static framework.BrowserManager.getInstance;
@@ -62,17 +64,17 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
 
 
 
-//    @BeforeTest
-//    public void beforeExecution() {
-//        try {
-//            System.out.println("************************GLOBAL HOOK - BEFORE: "+isLogin);
-//            CommonMethods.logIn();
-//            isLogin = true;
-//            CommonMethods.logIn();
-//        }catch (Exception e) {
-//            log.error("Unable to login before execution");
-//        }
-//    }
+    @BeforeTest
+    public void beforeExecution() {
+        try {
+            System.out.println("************************GLOBAL HOOK - BEFORE: "+isLogin);
+            CommonMethods.LogIn();
+            isLogin = true;
+            //CommonMethods.LogIn();
+        }catch (Exception e) {
+            log.error("Unable to login before execution");
+        }
+    }
 
 
 

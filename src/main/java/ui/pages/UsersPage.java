@@ -3,6 +3,7 @@ package ui.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.BasePageObject;
@@ -27,6 +28,7 @@ public class UsersPage extends BasePageObject {
 
     //@FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
     @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
+    //*[@id="content"]/div[1]/table
     @CacheLookup
     WebElement tableUsers;
 
@@ -61,6 +63,10 @@ public class UsersPage extends BasePageObject {
     @FindBy(xpath = "//*[@id=\"content\"]/div[1]/p")
     @CacheLookup
     WebElement createdMessage;
+    public UsersPage(){
+        PageFactory.initElements(driver, this);
+        waitUntilPageObjectIsLoaded();
+    }
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
@@ -73,7 +79,7 @@ public class UsersPage extends BasePageObject {
         return new UsersNewPage();
     }
     public UsersSuspendedPage clickSuspendUsers(){
-//        suspendedUsers.click();
+        suspendedUsers.click();
         return new UsersSuspendedPage();
     }
     public UsersImportPage clickInviteWholeTeam(){

@@ -1,4 +1,4 @@
-@createBoard
+@Board
 Feature: Boards
 #  Background:
 #    Given I navigate to Login page
@@ -6,12 +6,12 @@ Feature: Boards
   Background:
     Given I navigate to Login page
     When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
-
+  @createBoard
   Scenario Outline:  User should be able create a new Board
     Given I navigate to Dashboard page
     When I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
     Then the Board "<Board Name>" it should be displayed on the window
-    And I should view the Board name "<Board Name>" in the boards list
+#    And I should view the Board name "<Board Name>" in the boards list
 
   Examples:
     |Board Name            |Board Description   |Board Template   |
@@ -25,49 +25,58 @@ Feature: Boards
 
 
 #  @DeleteBoard
-#  Feature: Board
-#  Background:
-#    Given I have a valid account on Kanban tool
-#    And I login with user ”PenielDamian” with password “Control123”
-#  https://penieldamian.kanbantool.com/login
 #
-#
-#  Scenario: User Should be able Delete a Board
+#  Scenario Outline: User Should be able Delete a Board
 #    Given I navigate to Dashboard page
-#    And I have to a board created
-#    When I delete the board
-#    Then the board name should be remove to Dashboard List
+#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+#    When I delete the board "<Board Name>"
+#    Then the board "<Board Name>" not should be displayed on Dashboard List
+#
+#  Examples:
+#    |Board Name            |Board Description   |Board Template   |
+#    |BoardSimpleBasic      |This a test Board   |simple basic     |
 #
 #  @CloneBoard
-#  Scenario: Clone a board
+#  Scenario Outline: User should be clone a board
 #    Given I navigate to Dashboard page
-#    And I have to a board created
-#    When I cloned the board
-#    Then the name board cloned should be display in the Dashboard section
-#    And the board cloned structure should be same to original board
+#      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+#    When I cloned the board "<Board Name>"
+#    Then the cloned board "<Board Name>" should be displayed in the Dashboard section
+#      And the cloned board structure should be the same that original board
+#  Examples:
+#    |Board Name            |Board Description   |Board Template   |
+#    |BoardSimpleBasic      |This a test Board   |simple basic     |
 #
 #  @renameBoard
-#  Feature: Board
-#  Scenario: User should be able rename a Board
+#  Scenario Outline: User should be able rename a Board
 #    Given I navigate to Dashboard page
-#    And I have to a board created
-#    When I rename the Board
-#    Then the new name board should be display on the Dashboard section
-#
-#  @reorderItems
-#  Feature: Board
-#  Scenario: As account admin, you can reorder items to suit your needs
-#    Given I have four boards on the Dasboard
-#    When I want to reorder boards items
-#    Then I have to select Reorder items
-#      And I have to move from top to bottom the items
+#      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+#    When I rename the Board "<Board Name>"
+#    Then I should view the Board name "<NewBoard Name>" in the boards list
+##    Then the new name board "<NewBoard Name>" should be display on the Dashboard section
+#  Examples:
+#    |Board Name            |Board Description   |Board Template   |NewBoard Name         |
+#    |BoardSimpleBasic      |This a test Board   |simple basic     |NewBoardSimpleBasic   |
 #
 #
-#    When I reorder the items
-#    Then the Boards list should be same reorders
 #
+#
+#
+#
+#
+#
+##  @reorderItems
+##  Scenario: As account admin, you can reorder items to suit your needs
+##    Given I have four boards on the Dasboard
+##    When I want to reorder boards items
+##    Then I have to select Reorder items
+##      And I have to move from top to bottom the items
+##
+##
+##    When I reorder the items
+##    Then the Boards list should be same reorders
+##
 #  @share
-#  Feature Board
 #    Scenario select people to board
 #      Given  I have board create
 #        And I have "num_people" added in the board

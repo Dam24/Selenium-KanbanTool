@@ -1,15 +1,56 @@
-@createBoard
+@Board
 Feature: Board
   Background:
-    Given I have a valid account on Kanban Tool
-    And I login with user ”PenielDamian” with password “Control123”
+    Given I navigate to Login page
+    When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
 
-  Scenario:  User Should be moved a Task
+
+  @MoveTask
+  Scenario Outline: User Should be able to move a Task
     Given I navigate to Dashboard page
-    And I have to a Board created with the following details:.......
-    And I have to a task created on <"Column Name"> Column
-    When I moved the task the <"Column Name"> to <"Column Destine">
-    Then  The Task should be possicioned on the <"Column Destine"> Column
+      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    And I have a Board created with the following details:.......
+    And I have a task created on "<Column Name>" Column
+    When I move the task from "<Column Name>" to "<Column Destine>"
+    Then  the Task should be displayed on the Column "<Column Destine>"
+  Examples:
+    |Board Name            |Board Description   |Board Template   |
+    |BoardSimpleBasic      |This a test Board   |simple basic     |
+  Examples:
+    |Column Name     |Column Destine     |
+    |To do           |In Progress        |
+
+
+
+
+  @ColumnTasks
+  Scenario Outline: User should be able view the
+    Given I have a Board created with the following details:.......
+      And I create "<Task Quantity>" Tasks  created on the board on the column "<Column Name>"
+    When I move the "<Task Quantity>" from "<Column Name>" to "<Column Destine>"
+    Then I should be able view the "<Task Quantity>" label on the "<Column Destine>"
+    And the number Column should display the correct quantity "<Task Quantity>"
+    And the number Column should be displayed to color red if the quantity exceeds to permitted
+
+  Examples:
+    |Task Quantity    |Column Name     |Column Destine     |column |
+    |2                |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   @DeleteBoard
@@ -57,7 +98,7 @@ Feature: Board
     Then I have to select Reorder items
       And I have to move from top to bottom the items
 
-    ///////////////
+/////
     When I reorder the items
     Then the Boards list should be same reorders
 

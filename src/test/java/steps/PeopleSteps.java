@@ -56,13 +56,13 @@ public class PeopleSteps {
 //        usersPage=usersNewPage.addNewUserSuccessful(userName,userEmail,checkBox);
 //
 //    }
-    @When("^I suspend to user \"([^\"]*)\"$")
-    public void I_suspend_to_user(String userName) throws InterruptedException {
+    @When("^I suspend the user \"([^\"]*)\"$")
+    public void I_suspend_the_user(String userName) throws InterruptedException {
         //usersPage.setSuspendedUsers(userName);
         usersPage.clickSuspendUserBtn(userName);
 //        usersPage.isAlertPresent();
     }
-    @Then("The message \"([^\"]*)\" should be displayed on the window")
+    @Then("The message \"([^\"]*)\" should be displayed")
     public void suspendedUserMessage(String message){
 
 
@@ -70,8 +70,8 @@ public class PeopleSteps {
         assertEquals(message, usersPage.getSuspendedMessage());
     }
 
-    @And("^I should not able to view to suspended user \"([^\"]*)\" on the Users list$")
-    public void I_should_not_able_to_view_to_suspended_user_on_the_Users_list(String userName) throws InterruptedException {
+    @And("^I should not be able to view to suspended user \"([^\"]*)\" on the Users list$")
+    public void I_should_not_be_able_to_view_to_suspended_user_on_the_Users_list(String userName) throws InterruptedException {
         //assertFalse(usersPage.findUserOnList(userName));
         //System.out.println("state: " +usersPage.isUserDisplayedInList(userName));
         assertFalse(usersPage.isUserDisplayedInList(userName));
@@ -91,8 +91,8 @@ public class PeopleSteps {
         //usersSuspendedPage=PageTransporter.getInstance().navigateToUserSuspendedPage();
     }
 
-    @When("^I reactive to user \"([^\"]*)\"$")
-    public void I_reactive_to_user(String userName){
+    @When("^I reactivate the user \"([^\"]*)\"$")
+    public void I_reactivate_the_user(String userName){
         usersSuspendedPage.clickReactivateUserBtn(userName);
         //usersSuspendedPage.reactivateUser(userName);
     }
@@ -104,6 +104,27 @@ public class PeopleSteps {
     public void I_should_be_able_to_view_to_reactive_user_on_Users_lis(String userName) throws InterruptedException {
         assertTrue(usersPage.isUserDisplayedInList(userName));
         //assertTrue(usersPage.isAddedUser(userName));
+    }
+
+    @When("I delete to user \"([^\"]*)\"")
+    public void I_delete_to_user(String userName){
+
+    }
+    @Then("I should not be able to view to delete user \"([^\"]*)\" on the Suspender User List")
+    public void not_be_able_to_view_to_delete_user_on_the_Suspender_User_list(String userName){
+
+    }
+    @And("I should not be able to view to delete user \"([^\"]*)\" on the User List")
+    public void not_be_able_to_view_to_delete_user_on_the_User_List(String userName){
+
+    }
+    @When("I Edit the user \"([^\"]*)\"")
+    public void I_Edit_the_user(String userName){
+
+    }
+    @Then("I should be able to view the changes for \"([^\"]*)\" on the active user list")
+    public void view_the_changes_on_the_active_user_list(String userName){
+
     }
 
 }

@@ -35,7 +35,7 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
 
     private static Logger log = Logger.getLogger("RunCukesTest");
     public static boolean isLogin;
-
+//
 //    @AfterTest
 //    public void afterExecution() {
 //        try {
@@ -54,7 +54,6 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
                 CommonMethods.logOut();
                 isLogin = false;
             }
-            System.out.println("************************GLOBAL HOOK - AFTER: "+isLogin);
         } catch (Exception e) {
             log.error("Unable to logout after execution", e);
         } finally {
@@ -62,12 +61,9 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
         }
     }
 
-
-
     @BeforeTest
     public void beforeExecution() {
         try {
-            System.out.println("************************GLOBAL HOOK - BEFORE: "+isLogin);
             CommonMethods.LogIn();
             isLogin = true;
             //CommonMethods.LogIn();

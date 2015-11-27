@@ -64,9 +64,9 @@ public class NewBoardPage extends BasePageObject {
         return this;
     }
 
-    private DashBoardPage clickCreateNewBoardBtn(){
+    private BoardPage clickCreateNewBoardBtn(){
         submitBtn.click();
-        return new DashBoardPage();
+        return new BoardPage();
     }
 
     private NewBoardPage clickCancelBtn(){
@@ -79,7 +79,7 @@ public class NewBoardPage extends BasePageObject {
         return new DashBoardPage();
     }
 
-    public DashBoardPage setCreateNewBoard(String boardName, String boardDescription, String boardTemplate){
+    public BoardPage setCreateNewBoard(String boardName, String boardDescription, String boardTemplate){
         setBoardNameInput(boardName);
         setBoardDescriptionInput(boardDescription);
 

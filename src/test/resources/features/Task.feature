@@ -18,17 +18,17 @@ Feature: tasks
 #  |Done         |Task3     |this is a task  |pink        |low     |           |          |
 #  |To do        |Task4     |this is a task  |violet      |high    |           |          |
 
-  @editTask
-  Scenario Outline: User should be able edit a task
-    Given I navigate to Dashboard page
-    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-    And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
-    When I edited in the column "<Column Name>" the Task name from "<Task Name>" to "<New Task Name>"
-    Then Then the new "<New Task Name>" task should be displayed on the "<Column Name>" column
-
-  Examples:
-  |Column Name  |Task Name  |New Task Name    |
-  |Done         |Task1      |NewTask1         |
+#  @editTask
+#  Scenario Outline: User should be able edit a task
+#    Given I navigate to Dashboard page
+#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+#    And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
+#    When I edited in the column "<Column Name>" the Task name from "<Task Name>" to "<New Task Name>"
+#    Then Then the new "<New Task Name>" task should be displayed on the "<Column Name>" column
+#
+#  Examples:
+#  |Column Name  |Task Name  |New Task Name    |
+#  |Done         |Task1      |NewTask1         |
 #
 #
 #

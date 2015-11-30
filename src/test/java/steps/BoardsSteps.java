@@ -79,10 +79,10 @@ public class BoardsSteps {
     }
 
 
-    @When("I edited in the column \"([^\"]*)\\ the Task name from \"([^\"]*)\\ to \"([^\"]*)\\")
-    public void editTask(String columnName, String taskName, String newTaskName){
-
-    }
+//    @When("I edited in the column \"([^\"]*)\\ the Task name from \"([^\"]*)\\ to \"([^\"]*)\\")
+//    public void editTask(String columnName, String taskName, String newTaskName){
+//
+//    }
 
 
 

@@ -12,6 +12,8 @@ import ui.pages.MainPage;
  * To change this template use File | Settings | File Templates.
  */
 public class CommonMethods {
+    private static PageTransporter pageTransporter = PageTransporter.getInstance();
+    public static boolean isLogin=false;
    // private MainPage mainPage;
 
     /**
@@ -22,12 +24,21 @@ public class CommonMethods {
         //private mainPage = new MainPage();
         MainPage mainPage=new MainPage();
         mainPage.logOut();
+        isLogin=false;
     }
 
     public static void LogIn(){
-        LoginPage loginPage=new LoginPage();
-        PageTransporter.getInstance().navigateToLoginPage();
-        loginPage.loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123");
+        pageTransporter.navigateToLoginPage().loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123")
+
+        ;
+
+
+
+//
+//        LoginPage loginPage=new LoginPage();
+//        PageTransporter.getInstance().navigateToLoginPage();
+//        loginPage.loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123");
+        isLogin=true;
     }
 
 

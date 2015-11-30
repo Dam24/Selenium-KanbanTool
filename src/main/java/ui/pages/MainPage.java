@@ -27,11 +27,13 @@ public class MainPage extends BasePageObject {
     @CacheLookup
     WebElement rightPane;
 
-    @FindBy(className = "dropdown pull-right")
+    //@FindBy(className = "dropdown pull-right")
+    @FindBy(xpath = "//*[@id=\"header\"]/nav/div/ul[2]/li[2]/a")
     @CacheLookup
     WebElement dropDownButton;
 
-    @FindBy(className = "icon-et-logout")
+    //@FindBy(className = "icon-et-logout")
+    @FindBy(xpath = "//*[@id=\"header\"]/nav/div/ul[2]/li[2]/ul/li[2]/a/span")
     @CacheLookup
     WebElement  logOutPage;
 

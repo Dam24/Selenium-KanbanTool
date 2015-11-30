@@ -2,10 +2,14 @@ package framework;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +24,8 @@ public class DriverManager {
     private WebDriverWait wait;
 
     private static DriverManager instance=null;
+
+    //final static Logger logger = Logger.getLogger(DriverManager.class);
 
     /*public String GetBaseAddress(){
             return "http://wordpressautomation.azurewebsites.net/";
@@ -36,6 +42,8 @@ public class DriverManager {
         //profile=new Profile();
         FirefoxProfile firefoxProfile = new FirefoxProfile();
         driver=new FirefoxDriver();
+
+        //driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         wait= new WebDriverWait(driver, 30, 100);

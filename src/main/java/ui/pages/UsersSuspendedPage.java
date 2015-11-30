@@ -65,9 +65,6 @@ public class UsersSuspendedPage extends BasePageObject{
         //return true;
     }
 
-    public void reactivateUser(String userName){
-
-    }
 
     public boolean isMessageDisplayed(){
         return successfullMessage.isDisplayed();

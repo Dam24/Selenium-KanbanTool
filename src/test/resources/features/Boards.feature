@@ -24,28 +24,28 @@ Feature: Boards
 #    |BoardOnlineMarketing  |This a test Board   |online marketing |
 
 
-#  @DeleteBoard
-#
-#  Scenario Outline: User Should be able Delete a Board
-#    Given I navigate to Dashboard page
-#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-#    When I delete the board "<Board Name>"
-#    Then the board "<Board Name>" not should be displayed on Dashboard List
-#
-#  Examples:
-#    |Board Name            |Board Description   |Board Template   |
-#    |BoardSimpleBasic      |This a test Board   |simple basic     |
-#
-#  @CloneBoard
-#  Scenario Outline: User should be clone a board
-#    Given I navigate to Dashboard page
-#      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-#    When I cloned the board "<Board Name>"
-#    Then the cloned board "<Board Name>" should be displayed in the Dashboard section
-#      And the cloned board structure should be the same that original board
-#  Examples:
-#    |Board Name            |Board Description   |Board Template   |
-#    |BoardSimpleBasic      |This a test Board   |simple basic     |
+  @DeleteBoard
+
+  Scenario Outline: User Should be able Delete a Board
+    Given I navigate to Dashboard page
+    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    When I delete the board "<Board Name>"
+    Then the board "<Board Name>" not should be displayed on Dashboard List
+
+  Examples:
+    |Board Name            |Board Description   |Board Template   |
+    |BoardSimpleBasic      |This a test Board   |simple basic     |
+
+  @CloneBoard
+  Scenario Outline: User should be clone a board
+    Given I navigate to Dashboard page
+      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    When I cloned the board "<Board Name>"
+    Then the cloned board "<Board Name>" should be displayed in the Dashboard section
+      And the cloned board structure should be the same that original board
+  Examples:
+    |Board Name            |Board Description   |Board Template   |
+    |BoardSimpleBasic      |This a test Board   |simple basic     |
 #
 #  @renameBoard
 #  Scenario Outline: User should be able rename a Board

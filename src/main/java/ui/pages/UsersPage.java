@@ -227,9 +227,17 @@ public class UsersPage extends BasePageObject {
  //       Thread.sleep(5000);
 ////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
 ////        System.out.println("user encontrado:   "+element.getText());
-        return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+        /////////////return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
 
        // return false;
+        boolean flag=false;
+        WebElement user= tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+
+        if(user.isDisplayed()){
+            flag=true;
+
+        }
+        return flag;
     }
 
 //    public boolean isSuspendedUser(String userName){

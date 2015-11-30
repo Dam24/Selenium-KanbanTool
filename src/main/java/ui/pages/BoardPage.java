@@ -2,6 +2,8 @@ package ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,6 +30,10 @@ public class BoardPage extends BasePageObject {
     @CacheLookup
     WebElement dataBoard;
 
+    @FindBy(xpath = "//kt-wip-counter")
+    @CacheLookup
+    WebElement boardCounter;
+
 
     public BoardPage(){
         PageFactory.initElements(driver, this);
@@ -46,11 +52,11 @@ public class BoardPage extends BasePageObject {
 
 
     public TaskPage clickAddTask(String columnName)throws InterruptedException{
-        System.out.println("entro al metodo");
+
         wait.until(ExpectedConditions.visibilityOf(dataBoard));
 
         WebElement addTaskBtn= dataBoard.findElement(By.xpath("//tbody/tr/td[span[contains(text(),'"+columnName+"')]]/kt-tasklist/div[1]/a[2]"));
-        System.out.println("addTaskBtn: "+addTaskBtn.getText());
+
         addTaskBtn.click();
         return new TaskPage();
     }
@@ -74,6 +80,22 @@ public class BoardPage extends BasePageObject {
     public void setEditTask(String columnName, String taskName, String newTaskName){
         clickEditTask(columnName, taskName);
         taskPage.editTask(newTaskName);
+    }
+
+
+    public void moveTask(String taskName, String columnName, String columnDestine){
+        WebElement selectedTask= dataBoard.findElement(By.xpath("//kt-board/tbody/tr/td[span[contains(text(),'" + columnName + "')]]/kt-tasklist/kt-task[div[contains(text(),'" + taskName + "')]]"));
+        WebElement column= dataBoard.findElement(By.xpath("//kt-board/tbody/tr/td[span[contains(text(),'" + columnDestine + "')]]"));
+
+
+        Actions builder = new Actions(driver);
+
+        Action dragAndDrop = builder.clickAndHold(selectedTask)
+                .moveToElement(column)
+                .release(column)
+                .build();
+
+        dragAndDrop.perform();
     }
 
 

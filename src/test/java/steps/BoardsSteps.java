@@ -1,5 +1,6 @@
 package steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -44,16 +45,18 @@ public class BoardsSteps {
     @And("I should view the Board name \"(.*?)\" in the boards list")
     public void view_the_Board_name_in_the_boards_list(String boardName){
         dashBoardPage= boardPage.boardNavBarPage.clickExitButton();
-        //assertTrue(dashBoardPage.isBoardDisplayedOnList(boardName));
+        assertTrue(dashBoardPage.isBoardDisplayedOnList(boardName));
     }
 
     @When("I delete the board \"(.*?)\"")
     public void delete_the_board(String boardName){
+        dashBoardPage.setDeleteBoard(boardName);
 
     }
 
     @Then("the board \"(.*?)\" not should be displayed on Dashboard List")
     public void board_not_should_be_displayed_on_Dashboard_list(String boardName){
+        assertFalse(dashBoardPage.isBoardDisplayedOnList(boardName));
 
     }
 
@@ -72,21 +75,26 @@ public class BoardsSteps {
         boardPage= taskPage.SetNewTask(taskName);
     }
 
-    @Then("the new \"([^\"]*)\" task should be displayed on the \"([^\"]*)\" column")
+    @Then("the \"([^\"]*)\" task should be displayed on the \"([^\"]*)\" column")
     public void taskIsDisplayedOnTheColumn(String taskName, String columnName){
         assertTrue(boardPage.isTaskPresent(taskName, columnName));
 
     }
 
+    @When("^I cloned the board \"([^\"]*)\"$")
+    public void I_cloned_the_board(String boardName) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
 
-    @When("I edited in the column \"([^\"]*)\\ the Task name from \"([^\"]*)\\ to \"([^\"]*)\\")
-    public void editTask(String columnName, String taskName, String newTaskName){
-
+    @When("^I edited in the column \"([^\"]*)\" the Task name from \"([^\"]*)\" to \"([^\"]*)\"$")
+    public void I_edited_in_the_column_the_Task_name_from_to(String columnName, String taskName, String newTaskName) throws Throwable {
+        boardPage.setEditTask(columnName,taskName,newTaskName);
     }
 
 
-
-
-
-
+    @When("^I move the task \"([^\"]*)\" from \"([^\"]*)\" to \"([^\"]*)\"$")
+    public void I_move_the_task_from_to(String taskName, String columnName, String columnDestine) throws Throwable {
+        boardPage.moveTask(taskName,columnName,columnDestine);
+    }
 }

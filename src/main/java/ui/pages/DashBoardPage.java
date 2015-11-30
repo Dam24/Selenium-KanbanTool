@@ -1,5 +1,6 @@
 package ui.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -16,6 +17,7 @@ import ui.BasePageObject;
  * To change this template use File | Settings | File Templates.
  */
 public class DashBoardPage extends BasePageObject{
+    public MainPage mainPage;
 
     @FindBy(id = "dashboard_items_list")
     @CacheLookup
@@ -37,6 +39,10 @@ public class DashBoardPage extends BasePageObject{
     @FindBy(className = "Reorder items")
     @CacheLookup
     WebElement reorderItemsLink;
+
+    @FindBy(xpath = "//*[@id=\"more_menu\"]/a[3]")
+    @CacheLookup
+    WebElement deleteBoardBtn;
 
     public DashBoardPage() {
         PageFactory.initElements(driver, this);
@@ -81,6 +87,37 @@ public class DashBoardPage extends BasePageObject{
     public boolean isBoardDisplayedOnList(String boardName){
         wait.until(ExpectedConditions.visibilityOf(boardsList));
         return boardsList.findElement(By.xpath("//a[contains(text(),'"+boardName+"')]")).isDisplayed();
+    }
+
+//    public LoginPage logOut(){
+//        mainPage.dropDownButton.click();
+//        mainPage.logOutPage.click();
+//        return new LoginPage();
+//    }
+
+    private DashBoardPage clickBoardMoreBtn(String boardName){
+        WebElement moreBtn=boardsList.findElement(By.xpath("//div[4]/ul/li[div/span/a[contains(text(),'"+boardName+"')]]/div[2]/a[2]/"));
+        moreBtn.click();
+        return this;
+    }
+    private DashBoardPage clickDeleteBoardBtn(){
+        deleteBoardBtn.click();
+        return this;
+    }
+
+    public void setDeleteBoard(String boardName){
+
+        String parentWindow = driver.getWindowHandle();
+        try{
+            clickBoardMoreBtn(boardName);
+            clickDeleteBoardBtn();
+            wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = driver.switchTo().alert();
+            System.out.println("alert message: "+alert.getText());
+            alert.accept();
+        }finally {
+            driver.switchTo().window(parentWindow);
+        }
     }
 
 }

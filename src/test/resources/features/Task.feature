@@ -5,15 +5,15 @@ Feature: tasks
     Given I navigate to Login page
     When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
 
-#  @addTask
-#  Scenario Outline: add a task on the board
-#    Given I navigate to Dashboard page
-#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-#    When I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
-#    Then the new "<Task Name>" task should be displayed on the "<Column Name>" column
-#  Examples:
-#  |Column Name  |Task Name  |description     |cardType    |priority|estimated  |Difficulty|
-#  |Done         |Task1      |this is a task  |yellow      |high    |           |          |
+  @addTask
+  Scenario Outline: add a task on the board
+    Given I navigate to Dashboard page
+    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    When I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
+    Then the "<Task Name>" task should be displayed on the "<Column Name>" column
+  Examples:
+  |Column Name  |Task Name  |description     |cardType    |priority|estimated  |Difficulty|
+  |Done         |Task1      |this is a task  |yellow      |high    |           |          |
 #  |In Progress  |Task2     |this is a task  |strong_red  |normal  |           |          |
 #  |Done         |Task3     |this is a task  |pink        |low     |           |          |
 #  |To do        |Task4     |this is a task  |violet      |high    |           |          |
@@ -24,7 +24,7 @@ Feature: tasks
     And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
     And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
     When I edited in the column "<Column Name>" the Task name from "<Task Name>" to "<New Task Name>"
-    Then Then the new "<New Task Name>" task should be displayed on the "<Column Name>" column
+    Then the "<New Task Name>" task should be displayed on the "<Column Name>" column
 
   Examples:
   |Column Name  |Task Name  |New Task Name    |

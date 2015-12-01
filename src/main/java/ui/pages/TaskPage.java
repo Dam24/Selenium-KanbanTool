@@ -14,7 +14,7 @@ import ui.BasePageObject;
  * To change this template use File | Settings | File Templates.
  */
 public class TaskPage extends BasePageObject {
-    @FindBy(name = "task[name]")
+    @FindBy(xpath = "//*[@id=\"show\"]/kt-cover/kt-taskview/form/div[1]/h1/textarea")
     @CacheLookup
     WebElement taskNameField;
 
@@ -77,9 +77,5 @@ public class TaskPage extends BasePageObject {
     public BoardPage editTask(String taskName){
         setTaskNameField(taskName);
         return clickCloseTaskBtn();
-
-
     }
-
-
 }

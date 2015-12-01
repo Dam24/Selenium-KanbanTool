@@ -1,12 +1,14 @@
 package steps;
 
 import common.CommonMethods;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import ui.PageTransporter;
+import ui.pages.DashBoardPage;
 import ui.pages.LoginPage;
 import ui.pages.MainPage;
 
@@ -29,6 +31,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginSteps {
     private LoginPage loginPage;
     private MainPage mainPage;
+    private DashBoardPage dashboardPage;
     private CommonMethods commonMethods;
 
     //private PageTransporter pageTransporter=PageTransporter.getInstance();
@@ -42,7 +45,11 @@ public class LoginSteps {
     @When("^I login as \"(.*?)\" with password \"(.*?)\"$")
     public void login(String userName, String userPassword){
         //webDriver= driverManager.getWebDriver();
-        mainPage = loginPage.loginSuccessful(userName, userPassword);
+        if(!CommonMethods.isLogin){
+            loginPage=PageTransporter.getInstance().navigateToLoginPage();
+            mainPage = loginPage.loginSuccessful(userName, userPassword);
+        }
+
     }
     @Then("^I should login successfully$")
     public void verifyMainPageIsDisplayed() {
@@ -67,6 +74,11 @@ public class LoginSteps {
     @After(value = "@LoginSteps", order = 999)
     public void afterLoginScenario() {
         commonMethods.logOut();
+    }
+
+    @When("^I logout$")
+    public void I_logout() throws Throwable {
+        loginPage= mainPage.logOut();
     }
 }
 

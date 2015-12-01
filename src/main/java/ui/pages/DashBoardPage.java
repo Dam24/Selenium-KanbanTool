@@ -1,5 +1,6 @@
 package ui.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui.BasePageObject;
+import ui.PageTransporter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,8 +18,11 @@ import ui.BasePageObject;
  * To change this template use File | Settings | File Templates.
  */
 public class DashBoardPage extends BasePageObject{
+    public MainPage mainPage;
+    public CloneBoardPage cloneBoardPage;
 
     @FindBy(id = "dashboard_items_list")
+    //@FindBy(xpath = "//div/ul[contains(@id, 'dashboard_items_list')]/")
     @CacheLookup
     WebElement boardsList;
 
@@ -38,15 +43,26 @@ public class DashBoardPage extends BasePageObject{
     @CacheLookup
     WebElement reorderItemsLink;
 
+    @FindBy(xpath = "//*[@id=\"more_menu\"]/a[3]")
+    @CacheLookup
+    WebElement deleteBoardBtn;
+
+    @FindBy(xpath = "//*[@id=\"more_menu\"]/a[2]")
+    @CacheLookup
+    WebElement cloneBoardBtn;
+
+    @FindBy(xpath = "//*[@id=\"more_menu\"]/a[1]")
+    @CacheLookup
+    WebElement renameBoardBtn;
+
     public DashBoardPage() {
         PageFactory.initElements(driver, this);
         waitUntilPageObjectIsLoaded();
     }
 
-
     @Override
     public void waitUntilPageObjectIsLoaded() {
-//        wait.until(ExpectedConditions.visibilityOf(actionsPane));
+        wait.until(ExpectedConditions.visibilityOf(createNewBoardLink));
     }
 
     public NewBoardPage clickCreateNewBoardLink(){
@@ -54,33 +70,70 @@ public class DashBoardPage extends BasePageObject{
         createNewBoardLink.click();
         return new NewBoardPage();
     }
+
     public FoldersNewPage clickCreateNewFolderLink(){
         createNewFolderLink.click();
         return new FoldersNewPage();
     }
 
-    //revisar
     public void clickReorderItemsLink(){
         reorderItemsLink.click();
     }
 
 
     public void clickMoreLink(){
-        //li[@id='items_board.184834']/div[2]/a[2]/
         WebElement moreLink=boardsList.findElement(By.xpath("//li[@id='items_board.184834']/div[2]/a[2]/"))  ;
-
-        //WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'" + userName + "')]]/td[3]/a[1]"));
-        //System.out.println("suspend Button:   "+ editBtn.getText());
         moreLink.click();
     }
+
     public void setNewBoard(String boardName, String boardDescription, String boardTemplate){
         clickCreateNewBoardLink();
-
     }
 
-    public boolean isBoardDisplayedOnList(String boardName){
-        wait.until(ExpectedConditions.visibilityOf(boardsList));
-        return boardsList.findElement(By.xpath("//a[contains(text(),'"+boardName+"')]")).isDisplayed();
+    public boolean isBoardDisplayedOnList(String boardName)throws InterruptedException{
+        try {
+            WebElement boardsListElement= boardsList.findElement(By.xpath("//li[div/span/a[contains(text(),'"+boardName+"')]]/div[1]"));
+            return boardsListElement.isDisplayed();
+
+        }   catch(Exception e){
+            return false;
+        }
+    }
+
+    private DashBoardPage clickBoardMoreBtn(String boardName){
+        WebElement moreBtn= boardsList.findElement(By.xpath("//li[div/span/a[contains(text(),'"+boardName+"')]]/div[2]/a[2]"));
+        moreBtn.click();
+        return this;
+    }
+
+    private DashBoardPage clickDeleteBoardBtn(){
+        deleteBoardBtn.click();
+        return this;
+    }
+
+    private DashBoardPage clickCloneBoardBtn(){
+        cloneBoardBtn.click();
+        return this;
+    }
+
+    public void setDeleteBoard(String boardName){
+        String parentWindow = driver.getWindowHandle();
+        try{
+            clickBoardMoreBtn(boardName);
+            clickDeleteBoardBtn();
+            wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = driver.switchTo().alert();
+            System.out.println("alert message: "+alert.getText());
+            alert.accept();
+        }finally {
+            driver.switchTo().window(parentWindow);
+        }
+    }
+
+    public CloneBoardPage clickCloneBoard(String boardName){
+            clickBoardMoreBtn(boardName);
+            clickCloneBoardBtn();
+            return new CloneBoardPage();
     }
 
 }

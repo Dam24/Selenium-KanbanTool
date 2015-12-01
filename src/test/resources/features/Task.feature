@@ -1,34 +1,32 @@
 @Tasks
 Feature: tasks
 
+
   Background:
-    Given I navigate to Login page
-    When I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
+#    Given I login as "Damian.Villanueva@fundacion-jala.org" with password "Control123"
+    Given I login as "penieldvp18@gmail.com" with password "Control123"
 
-#  @addTask
-#  Scenario Outline: add a task on the board
-#    Given I navigate to Dashboard page
-#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-#    When I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
-#    Then the new "<Task Name>" task should be displayed on the "<Column Name>" column
-#  Examples:
-#  |Column Name  |Task Name  |description     |cardType    |priority|estimated  |Difficulty|
-#  |Done         |Task1      |this is a task  |yellow      |high    |           |          |
-#  |In Progress  |Task2     |this is a task  |strong_red  |normal  |           |          |
-#  |Done         |Task3     |this is a task  |pink        |low     |           |          |
-#  |To do        |Task4     |this is a task  |violet      |high    |           |          |
+  @addTask
+  Scenario Outline: add a task on the board
+    Given I navigate to Dashboard page
+    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    When I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
+    Then the "<Task Name>" task should be displayed on the "<Column Name>" column
+  Examples:
+    |Column Name  |Task Name  |Board Name         |
+    |Done         |Task1      |BoardToCreateTask  |
 
-#  @editTask
-#  Scenario Outline: User should be able edit a task
-#    Given I navigate to Dashboard page
-#    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
-#    And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
-#    When I edited in the column "<Column Name>" the Task name from "<Task Name>" to "<New Task Name>"
-#    Then Then the new "<New Task Name>" task should be displayed on the "<Column Name>" column
-#
-#  Examples:
-#  |Column Name  |Task Name  |New Task Name    |
-#  |Done         |Task1      |NewTask1         |
+  @editTask
+  Scenario Outline: User should be able edit a task
+    Given I navigate to Dashboard page
+    And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+    And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
+    When I edited in the column "<Column Name>" the Task name from "<Task Name>" to "<New Task Name>"
+    Then the "<New Task Name>" task should be displayed on the "<Column Name>" column
+
+  Examples:
+    |Column Name  |Task Name  |New Task Name    |Board Name       |
+    |Done         |Task1      |NewTask1         |BoardToEditTask  |
 #
 #
 #
@@ -43,12 +41,17 @@ Feature: tasks
 #
 #  @deleteTask
 #  Feature task
-#  Scenario delete a task
-#    Given I have to a board created
-#    And I have to a Task added on the board
-#    When I delete the task
-#    Then the task deleted not should display on the column "column name" on the board
-#
+#  Scenario Outline: delete a task
+#    Given I navigate to Dashboard page
+#      And I create a new board with the following details: Board Name: "<Board Name>", description: "<Board Description>", template: "<Board Template>"
+#      And I added a new task in the Column "<Column Name>" with the following details: "<Task Name>"
+#    When I delete the Task "<Task Name>" to the column "<Column Name>"
+#    Then the Task "<Task Name>" not should be displayed on the column "<Column Name>"
+#  Examples:
+#  |Column Name  |Task Name  |
+#  |Done         |Task1      |
+
+
 #
 #  @assignTask
 #  Feature task

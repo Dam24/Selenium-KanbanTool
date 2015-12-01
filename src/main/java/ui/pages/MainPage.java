@@ -27,11 +27,11 @@ public class MainPage extends BasePageObject {
     @CacheLookup
     WebElement rightPane;
 
-    @FindBy(className = "dropdown pull-right")
+    @FindBy(xpath = "//*[@id=\"header\"]/nav/div/ul[2]/li[2]/a")
     @CacheLookup
     WebElement dropDownButton;
 
-    @FindBy(className = "icon-et-logout")
+    @FindBy(xpath = "//*[@id=\"header\"]/nav/div/ul[2]/li[2]/ul/li[2]/a/span")
     @CacheLookup
     WebElement  logOutPage;
 
@@ -42,28 +42,16 @@ public class MainPage extends BasePageObject {
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(dashboardItemsList));
+        wait.until(ExpectedConditions.visibilityOf(mainNavBar));
     }
-
-
-    /*private MainPage isUserNameDisplayed(){
-
-    }*/
 
     public boolean isUserNameDisplayed(){
-
         return mainNavBar.isDisplayed();
-
     }
-
-    //private MainPage
 
     public LoginPage logOut(){
         dropDownButton.click();
         logOutPage.click();
         return new LoginPage();
     }
-
-
-    
 }

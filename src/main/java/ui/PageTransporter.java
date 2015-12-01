@@ -18,10 +18,14 @@ import ui.pages.*;
  */
 public class PageTransporter {
     private WebDriver driver = DriverManager.getInstance().getWebDriver();
-    private String baseLoginURL = "https://penieldamian.kanbantool.com/";
-    private String baseMainPage = "https://penieldamian.kanbantool.com/";
-    private String baseUsersPage = "https://penieldamian.kanbantool.com/users";
-    private String baseUsersSuspended ="https://penieldamian.kanbantool.com/users/suspended";
+//    private String baseLoginURL = "https://penieldamian.kanbantool.com/";
+//    private String baseMainPage = "https://penieldamian.kanbantool.com/";
+//    private String baseUsersPage = "https://penieldamian.kanbantool.com/users";
+//    private String baseUsersSuspended ="https://penieldamian.kanbantool.com/users/suspended";
+    private String baseLoginURL = "https://damianvillanueva.kanbantool.com/";
+    private String baseMainPage = "https://damianvillanueva.kanbantool.com/";
+    private String baseUsersPage = "https://damianvillanueva.kanbantool.com/users";
+    private String baseUsersSuspended ="https://damianvillanueva.kanbantool.com/users/suspended";
     private static PageTransporter instance;
 
     protected PageTransporter() {

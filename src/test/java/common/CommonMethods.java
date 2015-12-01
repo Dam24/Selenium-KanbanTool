@@ -14,21 +14,26 @@ import ui.pages.MainPage;
 public class CommonMethods {
     private static PageTransporter pageTransporter = PageTransporter.getInstance();
     public static boolean isLogin=false;
-   // private MainPage mainPage;
+    // private MainPage mainPage;
 
     /**
      * Log outs from the web app
      */
 
     public static void logOut() {
-        //private mainPage = new MainPage();
+//        private mainPage = new MainPage();
         MainPage mainPage=new MainPage();
+
         mainPage.logOut();
+//
+//        pageTransporter.navigateToMainPage().logOut();
         isLogin=false;
     }
 
     public static void LogIn(){
-        pageTransporter.navigateToLoginPage().loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123")
+        isLogin=true;
+//        pageTransporter.navigateToLoginPage().loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123")
+        pageTransporter.navigateToLoginPage().loginSuccessful("penieldvp18@gmail.com","Control123")
 
         ;
 
@@ -38,7 +43,7 @@ public class CommonMethods {
 //        LoginPage loginPage=new LoginPage();
 //        PageTransporter.getInstance().navigateToLoginPage();
 //        loginPage.loginSuccessful("Damian.Villanueva@fundacion-jala.org","Control123");
-        isLogin=true;
+
     }
 
 

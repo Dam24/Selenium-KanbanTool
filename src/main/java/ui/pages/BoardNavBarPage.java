@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui.BasePageObject;
+import ui.PageTransporter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,11 +55,4 @@ public class BoardNavBarPage extends BasePageObject {
         navBoard.click();
         return new BoardPage();
     }
-
-    public DashBoardPage clickExitButton(){
-        wait.until(ExpectedConditions.visibilityOf(navExit));
-        navExit.click();
-        return new DashBoardPage();
-    }
-
 }

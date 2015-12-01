@@ -27,8 +27,8 @@ public class UsersSuspendedPage extends BasePageObject{
     @CacheLookup
     WebElement goBackBtn;
 
-    @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
-    //@FindBy(xpath = "//*[@id=\"content\"]/div[1]/table")
+    //@FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
+    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/table")
     //@FindBy(className = "table table-condensed")
     @CacheLookup
     WebElement tableUsersSuspended;
@@ -37,14 +37,18 @@ public class UsersSuspendedPage extends BasePageObject{
     @CacheLookup
     WebElement successfullMessage;
 
-//    public UsersSuspendedPage(){
-//        PageFactory.initElements(driver, this);
-//        waitUntilPageObjectIsLoaded();
-//    }
+    public UsersSuspendedPage(){
+        PageFactory.initElements(driver, this);
+        waitUntilPageObjectIsLoaded();
+    }
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-//        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
+        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
+    }
+    public UsersPage clickGoBackBtn(){
+        goBackBtn.click();
+        return new UsersPage();
     }
 
     public void clickReactivateUserBtn(String userName){
@@ -53,21 +57,26 @@ public class UsersSuspendedPage extends BasePageObject{
         reactivateBtn.click();
     }
     public void clickDeleteUserBtn(String userName){
-        WebElement deleteBtn=tableUsersSuspended.findElement(By.xpath("//tr[td[contains(text(),'" + userName + "')]]/td[3]/a[2]"));
+        WebElement deleteBtn=tableUsersSuspended.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
         System.out.println("suspend Button:   "+ deleteBtn.getText());
         deleteBtn.click();
     }
 
     public boolean isAddedSuspendedUser(String userName)throws InterruptedException{
-        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
-        return tableUsersSuspended.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+//        wait.until(ExpectedConditions.visibilityOf(goBackBtn));
+        //return tableUsersSuspended.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
 //        return driver.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
         //return true;
+
+        try {
+            WebElement UserSuspendedList= tableUsersSuspended.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+            return true;
+
+        }   catch(Exception e){
+            return false;
+        }
     }
 
-    public void reactivateUser(String userName){
-
-    }
 
     public boolean isMessageDisplayed(){
         return successfullMessage.isDisplayed();

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Cucumber-JVM Html Reports - Tag: @Tasks </title>
+    <link rel="stylesheet" href="blue/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="blue/css/skin/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="blue/css/960.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="blue/css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="blue/css/text.css" type="text/css" media="screen" />
+    <link rel="shortcut icon" href="blue/favicon.ico" />
+
+<style>
+
+.feature-keyword {
+	font-weight: bold;
+}
+
+.feature-description {
+	padding-left: 15px;
+	font-style: italic;
+	background-color: beige;
+}
+
+.feature-role {
+	font-weight: bold;
+}
+
+.feature-action {
+	font-weight: bold;
+}
+
+.feature-value {
+	font-weight: bold;
+}
+
+.feature-tags {
+	padding-top: 10px;
+	padding-left: 15px;
+	color: darkblue;
+}
+
+.scenario-keyword {
+	font-weight: bold;
+	padding-left: 15px;
+}
+
+.scenario-scenario_name {
+	padding-left: 15px;
+}
+
+.step-keyword {
+	font-weight: bold;
+	padding-left: 50px;
+}
+
+.step-error-message {
+	background-color: #FFEEEE;
+	padding-left: 50px;
+	border: 1px solid #D88A8A;
+}
+
+.step-duration {
+	float: right;
+	padding-right: 15px;
+}
+
+.passed {
+	background-color: #C5D88A;
+}
+
+.failed {
+	background-color: #D88A8A;
+}
+
+.skipped {
+	background-color: #88AAFF;
+}
+
+.pending {
+	background-color: #FBB907;
+}
+
+.undefined {
+	background-color: #FBB987;
+}
+
+.missing {
+	background-color: #FBB9D7;
+}
+
+table.stats-table {
+	color: black;
+	width: 100%;
+	border-width: 1px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: gray;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+table.stats-table th {
+	color: black;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: gray;
+	background-color: #66CCEE;
+	-moz-border-radius:;
+}
+
+table.stats-table td {
+	color: black;
+	text-align: center;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+	-moz-border-radius:;
+}
+
+table.data-table {
+	color: black;
+	border-width: 1px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: #d6d6d6;
+	border-collapse: collapse;
+	background-color: beige;
+}
+
+table.data-table th {
+	color: black;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: #d6d6d6;
+	background-color: #66CCEE;
+}
+
+table.data-table td {
+	color: black;
+	text-align: center;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: #d6d6d6;
+	background-color: beige;
+}
+
+.data {
+	padding-left: 50px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.output-data {
+	padding-left: 50px;
+	background-color: beige;
+}
+
+.doc-string {
+	width: auto;
+	display: inline-block;
+	margin: 10px auto 10px 70px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.35);
+	border-radius: 10px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 95%;
+}
+
+.graph {
+	margin-bottom: 50px;
+	margin-top: 30px;
+	clear: both;
+	font-family: georgia, serif;
+	font-size: 14px;
+}
+
+.graph-header h3 {
+	margin-bottom: 0px;
+}
+
+.graph-header {
+	text-align: center;
+}
+
+.graph-header p {
+	margin-top: 0px;
+}
+
+.graph .legend td, .graph .legend, .graph .legend tr {
+	padding: 0px;
+	margin: 0px;
+	border-collapse: collapse;
+}
+
+.graph .legend {
+	margin-left: 10px;
+}
+
+.graph .legend td {
+	padding-right: 5px;
+}
+
+.graph .legend .color-box {
+	width: 14px;
+	height: 10px;
+	overflow: hidden;
+}
+
+.graph .label {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: block;
+	position: absolute;
+	right: -5px;
+	top: 15px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+}
+
+</style>
+</head>
+<body id="top">
+    <div id="fullwidth_header">
+        <div class="container_12">
+            <h1 class="grid_4 logo"><a href="feature-overview.html" class='ie6fix'>Cucumber</a></h1>
+            <div class="grid_6" id="nav">
+                <ul>
+                                        <li><a href="feature-overview.html">Feature Overview</a></li>
+                    <li><a href="tag-overview.html">Tag Overview</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="fullwidth_gradient">
+        <div class="container_12">
+            <div class="grid_9 heading">
+                <h2>Result for <span style="color:#66CCEE;">@Tasks</span> in Build: 1</h2>
+                            </div>
+        </div>
+    </div>
+
+    <div class="container_12">
+        <div class="grid_12">
+
+            <div>
+                <table class="stats-table">
+                    <tr>
+    <th></th>
+    <th id="stats-header-scenarios" colspan="3">Scenarios</th>
+    <th id="stats-header-steps" colspan="7">Steps</th>
+    <th></th>
+    <th></th>
+</tr>
+<tr>
+    <th id="stats-header-feature">Feature</th>
+    <th id="stats-header-scenarios-total">Total</th>
+    <th id="stats-header-scenarios-passed">Passed</th>
+    <th id="stats-header-scenarios-failed">Failed</th>
+    <th id="stats-header-steps-total">Total</th>
+    <th id="stats-header-steps-passed"    style="background-color:#00CE00;">Passed</th>
+    <th id="stats-header-steps-failed"    style="background-color:#FF0000;">Failed</th>
+    <th id="stats-header-steps-skipped"   style="background-color:#88AAFF;">Skipped</th>
+    <th id="stats-header-steps-pending"   style="background-color:#FBB907;">Pending</th>
+    <th id="stats-header-steps-undefined" style="background-color:#FBB957;">Undefined</th>
+    <th id="stats-header-steps-missing"   style="background-color:#FBB9A7;">Missing</th>
+    <th id="stats-header-duration">Duration</th>
+    <th id="stats-header-status">Status</th>
+</tr>
+                    <tr>
+                        <td><a href="Tasks.html">@Tasks</a></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>9</td>
+                        <td>7</td>
+                        <td   style="background-color:#FF0000;" >1</td>
+                        <td    style="background-color:#88AAFF;" >1</td>
+                        <td >0</td>
+                        <td >0</td>
+                        <td >0</td>
+                        <td style="text-align:right;white-space:nowrap">59s 842ms</td>
+                        <td style="background-color: #FF0000;">failed</td></tr>
+
+                </table>
+
+            </div>
+
+        <div style="color:black;">
+                            <div style="margin-bottom:20px;width:100%">
+                    <div><a href="Task.feature.html">View Feature File</a></div>
+                <div class="feature-tags"><a href="addTask.html">@addTask</a>,<a href="Tasks.html">@Tasks</a></div>
+                <div class="passed"><span class="scenario-keyword">Scenario Outline: </span> <span class="scenario-name">add a task on the board</span></div>
+                                  <div class="passed"><span class="step-keyword">Given  </span><span class="step-name">I navigate to Dashboard page</span><span class="step-duration">03s 954ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="passed"><span class="step-keyword">And  </span><span class="step-name">I create a new board with the following details: Board Name: &quot;BoardToCreateTask&quot;, description: &quot;&lt;Board Description&gt;&quot;, template: &quot;&lt;Board Template&gt;&quot;</span><span class="step-duration">13s 106ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="passed"><span class="step-keyword">When  </span><span class="step-name">I added a new task in the Column &quot;Done&quot; with the following details: &quot;Task1&quot;</span><span class="step-duration">01s 930ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="passed"><span class="step-keyword">Then  </span><span class="step-name">the &quot;Task1&quot; task should be displayed on the &quot;Done&quot; column</span><span class="step-duration">334ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                </div>
+                            <div style="margin-bottom:20px;width:100%">
+                    <div><a href="Task.feature.html">View Feature File</a></div>
+                <div class="feature-tags"><a href="editTask.html">@editTask</a>,<a href="Tasks.html">@Tasks</a></div>
+                <div class="failed"><span class="scenario-keyword">Scenario Outline: </span> <span class="scenario-name">User should be able edit a task</span></div>
+                                  <div class="passed"><span class="step-keyword">Given  </span><span class="step-name">I navigate to Dashboard page</span><span class="step-duration">04s 263ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="passed"><span class="step-keyword">And  </span><span class="step-name">I create a new board with the following details: Board Name: &quot;BoardToEditTask&quot;, description: &quot;&lt;Board Description&gt;&quot;, template: &quot;&lt;Board Template&gt;&quot;</span><span class="step-duration">13s 522ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="passed"><span class="step-keyword">And  </span><span class="step-name">I added a new task in the Column &quot;Done&quot; with the following details: &quot;Task1&quot;</span><span class="step-duration">01s 450ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="failed"><span class="step-keyword">When  </span><span class="step-name">I edited in the column &quot;Done&quot; the Task name from &quot;Task1&quot; to &quot;NewTask1&quot;</span><span class="step-duration">21s 278ms</span><div class="step-error-message"><pre>org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Command duration or timeout: 20.05 seconds
+Build info: version: '2.46.0', revision: '61506a4624b13675f24581e453592342b7485d71', time: '2015-06-04 10:22:50'
+System info: host: 'QDV04DDAVI001', ip: '172.20.200.44', os.name: 'Windows Server 2012 R2', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_65'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=42.0, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3af37b4d-3bcc-4c61-961d-bab199735fef
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:605)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:269)
+	at org.openqa.selenium.remote.RemoteWebElement.clear(RemoteWebElement.java:114)
+	at sun.reflect.GeneratedMethodAccessor11.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at com.sun.proxy.$Proxy10.clear(Unknown Source)
+	at ui.pages.TaskPage.setTaskNameField(TaskPage.java:49)
+	at ui.pages.TaskPage.editTask(TaskPage.java:79)
+	at steps.BoardsSteps.I_edited_in_the_column_the_Task_name_from_to(BoardsSteps.java:109)
+	at âœ½.When I edited in the column "Done" the Task name from "Task1" to "NewTask1"(Task.feature:24)
+Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Build info: version: '2.46.0', revision: '61506a4624b13675f24581e453592342b7485d71', time: '2015-06-04 10:22:50'
+System info: host: 'QDV04DDAVI001', ip: '172.20.200.44', os.name: 'Windows Server 2012 R2', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_65'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.preconditions.visible(file:///C:/Users/DAMIAN~1/AppData/Local/Temp/2/anonymous3202115602072204653webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:9615)
+	at <anonymous class>.DelayedCommand.prototype.checkPreconditions_(file:///C:/Users/DAMIAN~1/AppData/Local/Temp/2/anonymous3202115602072204653webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12265)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///C:/Users/DAMIAN~1/AppData/Local/Temp/2/anonymous3202115602072204653webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12282)
+	at <anonymous class>.fxdriver.Timer.prototype.setTimeout/<.notify(file:///C:/Users/DAMIAN~1/AppData/Local/Temp/2/anonymous3202115602072204653webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:603)
+</pre></div></div>
+                    
+                                    <div class="output-data"></div>
+                                  <div class="skipped"><span class="step-keyword">Then  </span><span class="step-name">the &quot;NewTask1&quot; task should be displayed on the &quot;Done&quot; column</span><span class="step-duration">000ms</span></div>
+                    
+                                    <div class="output-data"></div>
+                                </div>
+                </div>
+    </div>
+
+
+    <div class="container_12">
+        <div class="grid_12 hr"></div>
+        <div class="grid_12 footer">
+            <p style="text-align:center;"><a href="https://github.com/masterthought/jenkins-cucumber-jvm-reports-plugin-java">Cucumber-JVM Jenkins Report Plugin</a> - version: cucumber-reporting-0.1.0 - 01-12-2015 15:57:23</p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</body>

@@ -96,12 +96,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
-                    <systemPropertyVariables>
-                        <browserName>${browserName}</browserName>
-                        <envId>${envId}</envId>
-                        <BUILD_NUMBER>${BUILD_NUMBER}</BUILD_NUMBER>
-                        <JOB_NAME>${JOB_NAME}</JOB_NAME>
-                    </systemPropertyVariables>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -117,7 +112,7 @@
                         </goals>
                         <configuration>
                             <projectName>test</projectName>
-                            <outputDirectory>report</outputDirectory>
+                            <outputDirectory>src/report</outputDirectory>
                             <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
                             <skippedFails>true</skippedFails>
                             <undefinedFails>true</undefinedFails>

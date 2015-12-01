@@ -15,20 +15,12 @@ import java.util.List;
  * Created by peniel on 16/11/2015.
  */
 public class UsersPage extends BasePageObject {
-//    protected WebDriver driver;
-//    protected WebDriverWait wait;
 
     @FindBy(className = "actions_pane")
     @CacheLookup
     WebElement actionsPane;
 
-//    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/table")
-//    @CacheLookup
-//    WebElement tableUsers;
-
-    //@FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
     @FindBy(xpath = "//table[contains(@class, 'table-condensed')]/tbody")
-    //*[@id="content"]/div[1]/table
     @CacheLookup
     WebElement tableUsers;
 
@@ -47,14 +39,6 @@ public class UsersPage extends BasePageObject {
     @FindBy(className = "brand")
     @CacheLookup
     WebElement brand;
-    //@FindBy(linkText = "suspend")
-//    @FindBy(xpath = "xpath=(//a[contains(text(),'suspend')])")
-//    @CacheLookup
-//    WebElement suspendButton;
-
-    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/table/tbody/tr[1]/td[3]/a[2]")
-    @CacheLookup
-    WebElement wait123;
 
     @FindBy(xpath = "//*[@id=\"content\"]/div[1]/p")
     @CacheLookup
@@ -78,25 +62,20 @@ public class UsersPage extends BasePageObject {
         addNewPerson.click();
         return new UsersNewPage();
     }
+
     public UsersSuspendedPage clickSuspendUsers(){
         suspendedUsers.click();
         return new UsersSuspendedPage();
     }
+
     public UsersImportPage clickInviteWholeTeam(){
         inviteWholeTeam.click();
         return new UsersImportPage();
     }
 
-
-
-
     public boolean findUserOnList(String userName){
         boolean res = false;
-
         List<WebElement> list = tableUsers.findElements(By.tagName("tr"));
-
-        System.out.println("Lista de Elementos: " + list);
-
 
         Iterator<WebElement> iterator = list.iterator();
         while (iterator.hasNext()) {
@@ -106,19 +85,15 @@ public class UsersPage extends BasePageObject {
             //List<WebElement> list1 = iterator.next().findElements(By.tagName("td[0]"));
             System.out.println(name.getText());
             //iterator.next().findElements(By.tagName("td"))
-
-
             //if(list1.get().equals(userName)){
             if (name.getText().equalsIgnoreCase(userName)) {
                 res = true;
             }
         }
-
         return res;
     }
 
     public void setSuspendedUsers(String userName){
-        //tableUsers.findElement(By.linkText(userName)).findElement(By.linkText("suspend")).click();
         List<WebElement> list = tableUsers.findElements(By.tagName("tr"));
         System.out.println("Lista de Elementos: " + list);
         Iterator<WebElement> iterator = list.iterator();
@@ -133,26 +108,7 @@ public class UsersPage extends BasePageObject {
                 suspendedLink.click();
             }
         }
-
-        //suspendButton.click();
-        //td[3]/a[contains(text(),'suspend')]
     }
-
-//    public boolean isAlertPresent() {
-//        boolean presentFlag = false;
-//        try {
-//            // Check the presence of alert
-//            Alert alert = driver.switchTo().alert();
-//            // Alert present; set the flag
-//            presentFlag = true;
-//            // if present consume the alert
-//            alert.accept();
-//        } catch (NoAlertPresentException ex) {
-//            // Alert not present
-//            ex.printStackTrace();
-//        }
-//        return presentFlag;
-//    }
 
     public boolean isAlertPresent(){
         try{
@@ -166,39 +122,16 @@ public class UsersPage extends BasePageObject {
 
     public void clickSuspendUserBtn(String userName) throws InterruptedException {
         WebElement suspendBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[2]"));
-        System.out.println("suspend Button:   "+ suspendBtn.getText());
-
-//        //suspendBtn.click();
-//        //wait.until(ExpectedConditions.alertIsPresent());
-////        Thread.sleep(2000);
-//        suspendBtn.click();
-//        wait.until(ExpectedConditions.alertIsPresent());
-//        //System.out.println("is alert present " + isAlertPresent());
-//
-//        //if(isAlertPresent()){
-//            Alert alert = driver.switchTo().alert();
-//            System.out.println("alert message: "+alert.getText());
-//
-//            alert.accept();
-//        //}
-
         String parentWindow = driver.getWindowHandle();
         try{
             suspendBtn.click();
             wait.until(ExpectedConditions.alertIsPresent());
-            //System.out.println("is alert present " + isAlertPresent());
-
-            //if(isAlertPresent()){
             Alert alert = driver.switchTo().alert();
             System.out.println("alert message: "+alert.getText());
-
             alert.accept();
-
         }finally {
             driver.switchTo().window(parentWindow);
         }
-
-
     }
 
     private boolean isSuspendedMessagePresent(){
@@ -209,6 +142,7 @@ public class UsersPage extends BasePageObject {
         System.out.println("message exist: "+isSuspendedMessagePresent());
         return suspendMessage.getText();
     }
+
     public String getCreatedUserMessage(){
         System.out.println("message: "+createdMessage.getText());
         return createdMessage.getText();
@@ -218,27 +152,15 @@ public class UsersPage extends BasePageObject {
         WebElement editBtn=tableUsers.findElement(By.xpath("//tr[td[contains(text(),'"+userName+"')]]/td[3]/a[1]"));
         System.out.println("suspend Button:   "+ editBtn.getText());
         editBtn.click();
-
     }
 
     public boolean isUserDisplayedInList(String userName) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(tableUsers));
-       // wait.until(al);
- //       Thread.sleep(5000);
-////        WebElement element=tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
-////        System.out.println("user encontrado:   "+element.getText());
-        return tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]")).isDisplayed();
+        try {
+            WebElement user= tableUsers.findElement(By.xpath("//td[contains(text(),'" + userName + "')]"));
+            return user.isDisplayed();
 
-       // return false;
+        }   catch(Exception e){
+            return false;
+        }
     }
-
-//    public boolean isSuspendedUser(String userName){
-//        return suspendedUsers.findElement(By.linkText(userName)).isDisplayed();
-//    }
-
-
-
-
-
-
 }
